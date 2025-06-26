@@ -432,11 +432,8 @@ const SidebarMenuButton = React.forwardRef<
       return button;
     }
 
-    if (typeof tooltip === "string") {
-      tooltip = {
-        children: tooltip,
-      };
-    }
+    const tooltipContentProps =
+      typeof tooltip === "string" ? { children: tooltip } : tooltip;
 
     return (
       <Tooltip>
@@ -445,7 +442,7 @@ const SidebarMenuButton = React.forwardRef<
           side="right"
           align="center"
           hidden={state !== "collapsed" || isMobile}
-          {...tooltip}
+          {...tooltipContentProps}
         />
       </Tooltip>
     );
@@ -563,7 +560,14 @@ SidebarMenuSub.displayName = "SidebarMenuSub";
 const SidebarMenuSubItem = React.forwardRef<
   HTMLLIElement,
   React.ComponentProps<"li">
->(({ ...props }, ref) => <li ref={ref} {...props} />);
+>(({ className, ...props }, ref) => (
+  <li
+    ref={ref}
+    data-sidebar="menu-sub-item"
+    className={cn("relative", className)}
+    {...props}
+  />
+));
 SidebarMenuSubItem.displayName = "SidebarMenuSubItem";
 
 const SidebarMenuSubButton = React.forwardRef<
