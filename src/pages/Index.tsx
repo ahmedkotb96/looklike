@@ -19,14 +19,14 @@ const Index = () => {
       {/* Services Section */}
       <ServicesSection />
 
-      {/* Team Section */}
-      <TeamSection />
-
       {/* Trusted Companies Section */}
       <TrustedCompaniesSection />
 
       {/* Portfolio Section */}
       <PortfolioSection />
+
+      {/* Team Section */}
+      <TeamSection />
 
       {/* Contact Section */}
       <ContactSection />

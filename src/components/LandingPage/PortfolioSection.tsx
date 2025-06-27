@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-
 const PortfolioSection = () => {
   const [currentProject, setCurrentProject] = useState(0);
 
@@ -14,6 +12,34 @@ const PortfolioSection = () => {
         "https://cdn.builder.io/api/v1/image/assets/TEMP/00d117815d5d39b541dbfdfb070221ddb56cab96",
       logo: "https://cdn.builder.io/api/v1/image/assets/TEMP/19262947c98dfd5570bca883385edc5103f3b892",
     },
+    {
+      id: 2,
+      title: "centromall_brand_identity",
+      description: "Description for centromall_brand_identity.",
+      image: "/src/assets/Portfolio_imgs/centromall_brand_identity.png",
+      logo: "",
+    },
+    {
+      id: 3,
+      title: "cinnarolls_brand_identity",
+      description: "Description for cinnarolls_brand_identity.",
+      image: "/src/assets/Portfolio_imgs/cinnarolls_brand_identity.png",
+      logo: "",
+    },
+    {
+      id: 4,
+      title: "elmassa_brand_identity",
+      description: "Description for elmassa_brand_identity.",
+      image: "/src/assets/Portfolio_imgs/elmassa_brand_identity.png",
+      logo: "",
+    },
+    {
+      id: 5,
+      title: "home_brand_identity",
+      description: "Description for home_brand_identity.",
+      image: "/src/assets/Portfolio_imgs/home_brand_identity.png",
+      logo: "",
+    },
   ];
 
   const nextProject = () => {
@@ -25,7 +51,7 @@ const PortfolioSection = () => {
   };
 
   return (
-    <section id="portfolio" className="relative py-24 bg-black">
+      <section id="portfolio" className="relative py-24 pb-64 bg-black">
       {/* Background gradient */}
       <div
         className="absolute inset-0"
@@ -50,32 +76,6 @@ const PortfolioSection = () => {
         {/* Portfolio Carousel */}
         <div className="relative max-w-7xl mx-auto">
           {/* Navigation Buttons */}
-          <Button
-            onClick={prevProject}
-            className="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center z-20"
-          >
-            <svg
-              className="w-4 h-6 text-[#14142B]"
-              fill="currentColor"
-              viewBox="0 0 16 25"
-            >
-              <path d="M14.01 0.5C14.3433 0.833332 14.51 1.24167 14.51 1.725C14.51 2.20833 14.3433 2.61667 14.01 2.95L4.66 12.325L14.01 21.7C14.3433 22.0333 14.51 22.4375 14.51 22.9125C14.51 23.3875 14.3475 23.7917 14.0225 24.125C13.6975 24.4583 13.2933 24.625 12.81 24.625C12.3267 24.625 11.9183 24.4583 11.585 24.125L0.985001 13.525C0.651667 13.1917 0.485001 12.7875 0.485001 12.3125C0.485001 11.8375 0.651667 11.4333 0.985001 11.1L11.585 0.5C11.9183 0.166666 12.3267 0 12.81 0C13.2933 0 13.6933 0.166666 14.01 0.5Z" />
-            </svg>
-          </Button>
-
-          <Button
-            onClick={nextProject}
-            className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center z-20"
-          >
-            <svg
-              className="w-4 h-6 text-[#14142B]"
-              fill="currentColor"
-              viewBox="0 0 16 25"
-            >
-              <path d="M0.984985 0.5C1.31832 0.166666 1.72665 0 2.20999 0C2.69332 0 3.10165 0.166666 3.43499 0.5L14.01 11.1C14.36 11.45 14.535 11.8542 14.535 12.3125C14.535 12.7708 14.36 13.175 14.01 13.525L3.43499 24.125C3.10165 24.4583 2.69332 24.625 2.20999 24.625C1.72665 24.625 1.31832 24.4583 0.984985 24.125C0.651652 23.7917 0.484985 23.3875 0.484985 22.9125C0.484985 22.4375 0.651652 22.0333 0.984985 21.7L10.36 12.325L0.984985 2.95C0.651652 2.61667 0.484985 2.20833 0.484985 1.725C0.484985 1.24167 0.651652 0.833332 0.984985 0.5Z" />
-            </svg>
-          </Button>
-
           {/* Project Card */}
           <div className="flex justify-center px-8 md:px-24">
             <div className="max-w-5xl w-full">
@@ -133,7 +133,63 @@ const PortfolioSection = () => {
               </div>
             </div>
           </div>
+
+          {/* Navigation Controls - new addition */}
+          <div className="flex items-center justify-center mt-6 space-x-4 relative">
+            {/* Previous Button - match ServicesSection style */}
+            <button
+              onClick={prevProject}
+              className="w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br from-[#1225B9] to-[#FF2DF7] transition-all duration-300 flex items-center justify-center z-20"
+            >
+              <svg className="w-3 h-5 text-[#14142B] rotate-180 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 15 25">
+                <path d="M0.913163 1.21105C1.22913 0.895084 1.6162 0.737101 2.07435 0.737101C2.53251 0.737101 2.91957 0.895084 3.23554 1.21105L13.2597 11.2589C13.5914 11.5907 13.7573 11.9738 13.7573 12.4082C13.7573 12.8427 13.5914 13.2258 13.2597 13.5576L3.23554 23.6054C2.91957 23.9214 2.53251 24.0793 2.07435 24.0793C1.6162 24.0793 1.22913 23.9214 0.913163 23.6054C0.597194 23.2894 0.439209 22.9063 0.439209 22.4561C0.439209 22.0058 0.597194 21.6227 0.913163 21.3067L9.7998 12.4201L0.913163 3.53343C0.597194 3.21746 0.439209 2.8304 0.439209 2.37224C0.439209 1.91409 0.597194 1.52702 0.913163 1.21105Z" />
+              </svg>
+            </button>
+
+            {/* Dots Indicator - assuming items and currentIndex are defined */}
+            <div className="flex space-x-2">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentProject(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentProject 
+                      ? 'bg-[#1225B9] scale-125' 
+                      : 'bg-white/30 hover:bg-white/50'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Next Button - match ServicesSection style */}
+            <button
+              onClick={nextProject}
+              className="w-12 h-12 rounded-full bg-white shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br from-[#1225B9] to-[#FF2DF7] transition-all duration-300 flex items-center justify-center z-20"
+            >
+              <svg className="w-3 h-5 text-[#14142B] group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 15 25">
+                <path d="M0.913163 1.21105C1.22913 0.895084 1.6162 0.737101 2.07435 0.737101C2.53251 0.737101 2.91957 0.895084 3.23554 1.21105L13.2597 11.2589C13.5914 11.5907 13.7573 11.9738 13.7573 12.4082C13.7573 12.8427 13.5914 13.2258 13.2597 13.5576L3.23554 23.6054C2.91957 23.9214 2.53251 24.0793 2.07435 24.0793C1.6162 24.0793 1.22913 23.9214 0.913163 23.6054C0.597194 23.2894 0.439209 22.9063 0.439209 22.4561C0.439209 22.0058 0.597194 21.6227 0.913163 21.3067L9.7998 12.4201L0.913163 3.53343C0.597194 3.21746 0.439209 2.8304 0.439209 2.37224C0.439209 1.91409 0.597194 1.52702 0.913163 1.21105Z" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Progress Bar - matches ServicesSection */}
+          <div className="mt-4 mx-4">
+            <div className="h-1 bg-white/20 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-[#1225B9] to-[#F41CCC] rounded-full transition-all duration-500"
+                style={{ width: `${((currentProject + 1) / projects.length) * 100}%` }}
+              />
+            </div>
+          </div>
         </div>
+      </div>
+      {/* Background decorative image moved from TeamSection */}
+      <div className="absolute -right-32 bottom-[-75px] z-0">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/caa312e9412591d989bff3d9fae95d508f4290ef"
+          alt="3D decorative element"
+          className="w-[517px] h-[517px] object-contain"
+        />
       </div>
     </section>
   );

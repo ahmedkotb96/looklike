@@ -4,37 +4,45 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative py-24 bg-black min-h-screen flex items-center overflow-hidden"
+      className="relative py-24 pt-128 pb-128 bg-black min-h-screen flex items-center overflow-hidden"
     >
       {/* Background gradient */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #0917A5 52.73%, #1072FE 74.83%, #1225B9 96.19%)",
+            "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 10%, #0917A5 35.73%,rgb(29, 38, 129) 55.83%,rgb(2, 2, 2) 65%)",
         }}
       />
 
-      {/* Large circular background element */}
-      <div
-        className="absolute -left-96 bottom-0 w-[2191px] h-[794px] rounded-full border border-[#B1D0FF]/50"
-        style={{
-          background:
-            "radial-gradient(45.38% 51.38% at 50% 50%, #000 82.2%, #1146D7 100%)",
-        }}
-      />
+      {/* Thin curved horizontal SVG separator line (very pronounced upward arch, thicker) */}
+      <svg
+        className="absolute left-0 w-full h-8 z-10 md:bottom-[calc(40vh-230px)] bottom-40"
+        viewBox="0 0 1440 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,55 Q720,-59 1440,55"
+          stroke="#D1D5DB"
+          strokeWidth="5"
+          fill="none"
+        />
+      </svg>
+
 
       {/* Background decorative image */}
-      <div className="absolute -left-32 bottom-0 z-0">
+      <div className="absolute -left-32 bottom-0 z-0 top-[-80px]">
         <img
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/a14be66bb588b6b2d22e87778ece4a66646d3dba"
           alt="3D decorative element"
           className="w-[517px] h-[517px] object-contain opacity-80"
         />
       </div>
-
+      
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-6xl mx-auto">
+        <div className="text-center max-w-6xl mx-auto pb-20">
           {/* Main Heading */}
           <h2 className="text-4xl md:text-5xl lg:text-[65px] lg:leading-tight font-bold mb-8">
             <span className="text-white">Why Choose Us for</span>
