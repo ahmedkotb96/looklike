@@ -14,24 +14,7 @@ const ContactSection = () => {
             "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 10%, #0917A5 35.73%,rgb(29, 38, 129) 55.83%,rgb(2, 2, 2) 65%)",
         }}
       />
-
-      {/* Thin curved horizontal SVG separator line (very pronounced upward arch, thicker) */}
-      <svg
-        className="absolute left-0 w-full h-8 z-10 md:bottom-[calc(40vh-230px)] bottom-40"
-        viewBox="0 0 1440 64"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0,55 Q720,-59 1440,55"
-          stroke="#D1D5DB"
-          strokeWidth="5"
-          fill="none"
-        />
-      </svg>
-
-
+      
       {/* Background decorative image */}
       <div className="absolute -left-32 bottom-0 z-0 top-[-80px]">
         <img
@@ -64,10 +47,15 @@ const ContactSection = () => {
           </p>
 
           {/* CTA Button */}
-          <Button className="px-6 py-3 bg-white/10 border border-white/15 rounded-lg backdrop-blur-[7px] hover:bg-white/20 transition-all duration-300 shadow-[0px_0px_6px_3px_rgba(255,255,255,0.25)_inset] group">
-            <span className="text-white text-sm mr-2">Get In Touch !</span>
+          <Button className="relative px-8 py-4 bg-white/10 border border-white/20 rounded-xl backdrop-blur-[10px] hover:bg-white/25 hover:border-white/30 active:bg-white/30 transition-all duration-500 ease-out shadow-[0px_0px_8px_4px_rgba(255,255,255,0.15)_inset] hover:shadow-[0px_0px_20px_8px_rgba(255,255,255,0.25)_inset,0px_8px_32px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group overflow-hidden">
+            {/* Subtle shimmer effect on hover */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+            </div>
+            
+            <span className="relative text-white text-base font-medium mr-3 group-hover:text-white/95 transition-colors duration-300">Get In Touch !</span>
             <svg
-              className="w-4 h-3 text-white group-hover:translate-x-1 transition-transform duration-300"
+              className="relative w-5 h-4 text-white group-hover:translate-x-2 group-hover:scale-110 transition-all duration-500 ease-out"
               fill="currentColor"
               viewBox="0 0 18 14"
             >

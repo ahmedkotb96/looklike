@@ -6,8 +6,8 @@ const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 py-5 mx-auto max-w-7xl">
-      <div className="flex items-center justify-center w-full max-w-screen-xl mx-auto px-5 py-5 rounded-2xl bg-white/[0.01] backdrop-blur-[7px] border border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-0 py-0 mx-auto max-w-7xl">
+      <div className="flex items-center justify-center w-full max-w-screen-xl mx-auto px-5 py-3 rounded-b-2xl bg-white/[0.01] backdrop-blur-[7px] border-b border-white/10 mt-0">
         <div className="flex items-center justify-between w-full">
           {/* Logo */}
           <a

@@ -102,7 +102,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="relative py-12 sm:py-16 lg:py-24 bg-black overflow-hidden">
+    <section id="services" className="relative mt-8 mb-16 py-12 sm:py-16 lg:py-24 overflow-hidden" style={{ background: 'linear-gradient(180deg, #000 0%, #1225B9 40%, #1225B9 60%, #000 100%)' }}>
       {/* Background decorative elements */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] lg:w-[468px] lg:h-[473px] opacity-30 sm:opacity-40 lg:opacity-50">
         <svg
@@ -110,15 +110,6 @@ const ServicesSection = () => {
           viewBox="0 0 358 769"
         >
           <path d="M-0.114597 618.948C-118.657 621.509 -392.547 428.025 -194.8 426.175C2.94642 424.325 -217.197 398.403 -129.746 223.754C-42.2952 49.1038 203.667 223.816 206.944 375.516C210.221 527.216 118.428 616.387 -0.114597 618.948Z" />
-        </svg>
-      </div>
-
-      <div className="absolute right-0 top-1/4 w-[400px] h-[300px] sm:w-[600px] sm:h-[450px] lg:w-[984px] lg:h-[705px] opacity-30 sm:opacity-40 lg:opacity-50">
-        <svg
-          className="w-full h-full fill-[#F41CCC] blur-[50px] sm:blur-[60px] lg:blur-[75px]"
-          viewBox="0 0 361 1005"
-        >
-          <path d="M1134.1 466.134C1134.1 642.722 715.325 1044.31 720.412 749.813C725.498 455.316 661.071 782.268 298.244 646.439C-64.5819 510.609 313.504 150 632.248 150C950.993 150 1134.1 289.546 1134.1 466.134Z" />
         </svg>
       </div>
 
