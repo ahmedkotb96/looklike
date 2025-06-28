@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 const PortfolioSection = () => {
   const [currentProject, setCurrentProject] = useState(0);
+  const navigate = useNavigate();
 
   const projects = [
     {
@@ -86,7 +89,8 @@ const PortfolioSection = () => {
                     <img
                       src={projects[currentProject].image}
                       alt={projects[currentProject].title}
-                      className="w-full h-full object-cover rounded-l-[50px]"
+                      className="w-full h-full object-cover rounded-l-[50px] cursor-pointer"
+                      onClick={() => navigate("/branding_identity_design")}
                     />
                   </div>
 

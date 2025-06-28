@@ -11,9 +11,15 @@ const ContactSection = () => {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 10%, #0917A5 35.73%,rgb(29, 38, 129) 55.83%,rgb(2, 2, 2) 65%)",
+            "linear-gradient(180deg, #000 10%, #1225B9 75%)",
         }}
-      />
+      >
+        <img
+          src="/src/assets/arrow.png"
+          alt="Arrow"
+          className="absolute left-0 bottom-36 md:bottom-0 w-full z-10"
+        />
+      </div>
       
       {/* Background decorative image */}
       <div className="absolute -left-32 bottom-0 z-0 top-[-80px]">

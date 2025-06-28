@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { X, Menu } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-0 py-0 mx-auto max-w-7xl">
@@ -27,12 +29,14 @@ const Navigation = () => {
             <a
               href="#home"
               className="text-white font-bold text-base hover:text-blue-300 transition-colors"
+              onClick={e => { e.preventDefault(); navigate("/"); }}
             >
               Home
             </a>
             <a
               href="#about"
               className="text-white text-base hover:text-blue-300 transition-colors"
+              onClick={e => { e.preventDefault(); navigate("/about"); }}
             >
               About Us
             </a>
@@ -54,11 +58,12 @@ const Navigation = () => {
             >
               Our Team
             </a>
-            <a href="#contact">
-              <Button className="bg-[#1225B9] hover:bg-[#1225B9]/90 text-white px-4 py-2 rounded-lg">
-                Contact Us
-              </Button>
-            </a>
+            <Button
+              className="bg-[#1225B9] hover:bg-[#1225B9]/90 text-white px-4 py-2 rounded-lg"
+              onClick={() => navigate("/contact")}
+            >
+              Contact Us
+            </Button>
           </div>
 
           {/* Modern Mobile menu button */}
@@ -114,7 +119,7 @@ const Navigation = () => {
                   <a
                     href="#home"
                     className="group block text-white font-medium text-lg py-4 px-4 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/20 transition-all duration-300 hover:transform hover:translate-x-1"
-                    onClick={() => setMenuOpen(false)}
+                    onClick={e => { e.preventDefault(); setMenuOpen(false); navigate("/"); }}
                   >
                     <div className="flex items-center justify-end">
                       <span className="group-hover:text-blue-300 transition-colors duration-300">
@@ -127,7 +132,7 @@ const Navigation = () => {
                   <a
                     href="#about"
                     className="group block text-white/90 text-lg py-4 px-4 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/20 transition-all duration-300 hover:transform hover:translate-x-1"
-                    onClick={() => setMenuOpen(false)}
+                    onClick={e => { e.preventDefault(); setMenuOpen(false); navigate("/about"); }}
                   >
                     <div className="flex items-center justify-end">
                       <span className="group-hover:text-blue-300 transition-colors duration-300">
