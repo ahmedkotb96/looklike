@@ -55,8 +55,23 @@ const Navigation = () => {
             <a
               href="#team"
               className="text-white text-base hover:text-blue-300 transition-colors"
+              onClick={e => { e.preventDefault(); navigate("/team"); }}
             >
               Our Team
+            </a>
+            <a
+              href="#media-production"
+              className="text-white text-base hover:text-blue-300 transition-colors"
+              onClick={e => { e.preventDefault(); navigate("/media-production"); }}
+            >
+              Media Production
+            </a>
+            <a
+              href="#outdoor-advertising"
+              className="text-white text-base hover:text-blue-300 transition-colors"
+              onClick={e => { e.preventDefault(); navigate("/outdoor-advertising"); }}
+            >
+              Outdoor Advertising
             </a>
             <Button
               className="bg-[#1225B9] hover:bg-[#1225B9]/90 text-white px-4 py-2 rounded-lg"
@@ -171,13 +186,39 @@ const Navigation = () => {
                   <a
                     href="#team"
                     className="group block text-white/90 text-lg py-4 px-4 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/20 transition-all duration-300 hover:transform hover:translate-x-1"
-                    onClick={() => setMenuOpen(false)}
+                    onClick={e => { e.preventDefault(); setMenuOpen(false); navigate("/team"); }}
                   >
                     <div className="flex items-center justify-end">
                       <span className="group-hover:text-blue-300 transition-colors duration-300">
                         Our Team
                       </span>
                       <div className="w-2 h-2 rounded-full bg-green-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 ml-4"></div>
+                    </div>
+                  </a>
+
+                  <a
+                    href="#media-production"
+                    className="group block text-white/90 text-lg py-4 px-4 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/20 transition-all duration-300 hover:transform hover:translate-x-1"
+                    onClick={e => { e.preventDefault(); setMenuOpen(false); navigate("/media-production"); }}
+                  >
+                    <div className="flex items-center justify-end">
+                      <span className="group-hover:text-blue-300 transition-colors duration-300">
+                        Media Production
+                      </span>
+                      <div className="w-2 h-2 rounded-full bg-orange-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 ml-4"></div>
+                    </div>
+                  </a>
+
+                  <a
+                    href="#outdoor-advertising"
+                    className="group block text-white/90 text-lg py-4 px-4 rounded-2xl hover:bg-white/10 border border-transparent hover:border-white/20 transition-all duration-300 hover:transform hover:translate-x-1"
+                    onClick={e => { e.preventDefault(); setMenuOpen(false); navigate("/outdoor-advertising"); }}
+                  >
+                    <div className="flex items-center justify-end">
+                      <span className="group-hover:text-blue-300 transition-colors duration-300">
+                        Outdoor Advertising
+                      </span>
+                      <div className="w-2 h-2 rounded-full bg-yellow-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 ml-4"></div>
                     </div>
                   </a>
 

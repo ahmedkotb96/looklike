@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="relative bg-white/[0.01] backdrop-blur-[7px] border-t border-white/10">
       <div className="container mx-auto px-4 py-12">
@@ -46,6 +50,7 @@ const Footer = () => {
             <a
               href="#team"
               className="relative text-[#E6E6E6] text-sm transition-all duration-300 ease-out hover:text-white hover:scale-105 group overflow-hidden"
+              onClick={e => { e.preventDefault(); navigate("/team"); }}
             >
               <span className="relative z-10">Our Team</span>
               <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] transition-all duration-300 group-hover:w-full"></div>

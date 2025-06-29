@@ -8,6 +8,9 @@ import NotFound from "./pages/NotFound";
 import ContactPage from "@/pages/Contact";
 import BrandingIdentityDesignPage from "@/components/LandingPage/branding_identity_design";
 import AboutPage from "@/components/LandingPage/main/aboutUsMainSection";
+import OurTeamPage from "@/components/LandingPage/main/ourTeamMain";
+import MediaProductionPage from "@/components/LandingPage/media_production";
+import OutdoorAdvertisingPage from "@/components/LandingPage/outdoor_advertising";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +25,9 @@ const App = () => (
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/branding_identity_design" element={<BrandingIdentityDesignPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/team" element={<OurTeamPage />} />
+          <Route path="/media-production" element={<MediaProductionPage />} />
+          <Route path="/outdoor-advertising" element={<OutdoorAdvertisingPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
