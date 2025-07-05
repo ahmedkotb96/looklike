@@ -1,12 +1,12 @@
-import babelLogo from "@/assets/previous_customers/babel.png";
-import ihomeLogo from "@/assets/previous_customers/ihome.png";
-import alRehabLogo from "@/assets/previous_customers/al_rehab_development.png";
-import elmassaLogo from "@/assets/previous_customers/elmassa.png";
-import villaroseLogo from "@/assets/previous_customers/villarose.png";
-import plazaStripLogo from "@/assets/previous_customers/plaza_strip.png";
-import zodiacLogo from "@/assets/previous_customers/zodiac.png";
-import remaxLogo from "@/assets/previous_customers/remax.png";
-import blueLeftVectorTrustedSection from "@/assets/leftTrustedCompaniesVector.png";
+import babelLogo from "@/assets/previous_customers/babel.webp";
+import ihomeLogo from "@/assets/previous_customers/ihome.webp";
+import alRehabLogo from "@/assets/previous_customers/al_rehab_development.webp";
+import elmassaLogo from "@/assets/previous_customers/elmassa.webp";
+import villaroseLogo from "@/assets/previous_customers/villarose.webp";
+import plazaStripLogo from "@/assets/previous_customers/plaza_strip.webp";
+import zodiacLogo from "@/assets/previous_customers/zodiac.webp";
+import remaxLogo from "@/assets/previous_customers/remax.webp";
+import blueLeftVectorTrustedSection from "@/assets/leftTrustedCompaniesVector.webp";
 
 
 /**

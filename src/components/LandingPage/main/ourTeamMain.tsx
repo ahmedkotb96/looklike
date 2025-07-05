@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navigation from "@/components/LandingPage/Navigation";
 import Footer from "@/components/LandingPage/Footer";
 import { Button } from "@/components/ui/button";
-import bottomEclipse from "@/assets/ellipse_bottom.png";
+import bottomEclipse from "@/assets/ellipse_bottom.webp";
 
 interface TeamMember {
   id: number;

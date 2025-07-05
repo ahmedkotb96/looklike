@@ -3,17 +3,17 @@ import Navigation from "@/components/LandingPage/Navigation";
 import Footer from "@/components/LandingPage/Footer";
 import { Button } from "@/components/ui/button";
 
-import al_rehab_development from "@/assets/previous_customers/al_rehab_development.png";
-import babel from "@/assets/previous_customers/babel.png";
-import elmassa from "@/assets/previous_customers/elmassa.png";
-import ihome from "@/assets/previous_customers/ihome.png";
-import plaza_strip from "@/assets/previous_customers/plaza_strip.png";
-import remax from "@/assets/previous_customers/remax.png";
-import villarose from "@/assets/previous_customers/villarose.png";
-import zodiac from "@/assets/previous_customers/zodiac.png";
-import aboutUsImg from "@/assets/decoration/about_us.png";
-import astronautImg from "@/assets/astronaut.jpg";
-import bottomEclipse from "@/assets/ellipse_bottom.png";
+import al_rehab_development from "@/assets/previous_customers/al_rehab_development.webp";
+import babel from "@/assets/previous_customers/babel.webp";
+import elmassa from "@/assets/previous_customers/elmassa.webp";
+import ihome from "@/assets/previous_customers/ihome.webp";
+import plaza_strip from "@/assets/previous_customers/plaza_strip.webp";
+import remax from "@/assets/previous_customers/remax.webp";
+import villarose from "@/assets/previous_customers/villarose.webp";
+import zodiac from "@/assets/previous_customers/zodiac.webp";
+import aboutUsImg from "@/assets/decoration/about_us.webp";
+import astronautImg from "@/assets/astronaut.webp";
+import bottomEclipse from "@/assets/ellipse_bottom.webp";
 
 export default function Index() {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import homeTopLeft from "@/assets/decoration/home_top_left.png";
-import homeTopRight from "@/assets/decoration/home_top_right.png";
-import eclipse2 from "@/assets/Ellipse_2.png";
+import homeTopLeft from "@/assets/decoration/home_top_left.webp";
+import homeTopRight from "@/assets/decoration/home_top_right.webp";
+import eclipse2 from "@/assets/Ellipse_2.webp";
 
 const HeroSection = () => {
   return (

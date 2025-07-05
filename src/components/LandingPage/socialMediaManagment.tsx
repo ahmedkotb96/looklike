@@ -1,13 +1,13 @@
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { Button } from "@/components/ui/button";
-import socialMediaManagementDecoration from "@/assets/decoration/social_media_management.png";
-import squeezeImg from "@/assets/social_media_camaigns/squeeze.png";
-import caribyDairy2Img from "@/assets/social_media_camaigns/cariby_dairy2.png";
-import qemamImg from "@/assets/social_media_camaigns/qemam.png";
-import caribyDairyImg from "@/assets/social_media_camaigns/cariby_dairy.png";
-import dahabiaImg from "@/assets/social_media_camaigns/dahabia.png";
-import alTakamolImg from "@/assets/social_media_camaigns/al_takamol.png";
+import socialMediaManagementDecoration from "@/assets/decoration/social_media_management.webp";
+import squeezeImg from "@/assets/social_media_camaigns/squeeze.webp";
+import caribyDairy2Img from "@/assets/social_media_camaigns/cariby_dairy2.webp";
+import qemamImg from "@/assets/social_media_camaigns/qemam.webp";
+import caribyDairyImg from "@/assets/social_media_camaigns/cariby_dairy.webp";
+import dahabiaImg from "@/assets/social_media_camaigns/dahabia.webp";
+import alTakamolImg from "@/assets/social_media_camaigns/al_takamol.webp";
 
 export default function Index() {
   const portfolioItems = [

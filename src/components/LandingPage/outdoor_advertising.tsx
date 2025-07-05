@@ -1,7 +1,7 @@
 import Navigation from "@/components/LandingPage/Navigation";
 import Footer from "@/components/LandingPage/Footer";
 import { Button } from "@/components/ui/button";
-import outdoorAdvertisingDecoration from "@/assets/decoration/Outdoor_Advertising.png";
+import outdoorAdvertisingDecoration from "@/assets/decoration/Outdoor_Advertising.webp";
 
 export default function MediaProduction() {
   return (

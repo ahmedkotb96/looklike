@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import bottomEclipse from "@/assets/ellipse_bottom.png";
+import bottomEclipse from "@/assets/ellipse_bottom.webp";
 
 const ContactSection = () => {
   return (

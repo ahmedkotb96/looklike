@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import homeBottomLeft from "@/assets/decoration/home_bottom_left.png";
-import cinnarollsBrandIdentity from "@/assets/branding/cinnarolls_identity.jpg";
-import elmassaBrandIdentity from "@/assets/branding/elmassa_identity.jpg";
-import homeBrandIdentity from "@/assets/branding/ihome_identity.jpg";
-import zodiacBrandIdentity from "@/assets/branding/zodiac_identity.jpg";
-import fruitelBrandIdentity  from "@/assets/branding/Fruitel_identity.jpg";
+import homeBottomLeft from "@/assets/decoration/home_bottom_left.webp";
+import cinnarollsBrandIdentity from "@/assets/Portfolio_imgs/cinnarolls_brand_identity.webp";
+import elmassaBrandIdentity from "@/assets/Portfolio_imgs/elmassa_brand_identity.webp";
+import homeBrandIdentity from "@/assets/Portfolio_imgs/home_brand_identity.webp";
+import zodiacBrandIdentity from "@/assets/Portfolio_imgs/zodiac_brand_identity.webp";
+import centromallBrandIdentity from "@/assets/Portfolio_imgs/centromall_brand_identity.webp";
 
 const PortfolioSection = () => {
   const [currentProject, setCurrentProject] = useState(0);
@@ -43,9 +43,9 @@ const PortfolioSection = () => {
     },
     {
       id: 5,
-      title: "Fruitel",
-      description: "Vibrant and modern brand identity for Fruitel.From logo to packaging, every detail was crafted to build a strong and memorable visual presence.",
-      image: fruitelBrandIdentity,
+      title: "Centro Mall",
+      description: "Modern and clean brand identity for Centro Mall, reflecting the brand's focus on family shopping and contemporary retail experience.",
+      image: centromallBrandIdentity,
       logo: "",
     },
   ];
@@ -146,8 +146,8 @@ const PortfolioSection = () => {
         {/* Mobile Navigation Controls: [Prev] [Dots] [Next] */}
         <div className="block md:hidden mt-8">
           <div className="flex justify-center items-center w-full max-w-sm mx-auto px-2 gap-4">
-            <button onClick={prevProject} className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md hover:shadow-lg transition-shadow flex-shrink-0">
-              <svg className="w-3 h-5 text-[#14142B] rotate-180" fill="currentColor" viewBox="0 0 15 25"><path d="M0.913163 1.21105C1.22913 0.895084 1.6162 0.737101 2.07435 0.737101C2.53251 0.737101 2.91957 0.895084 3.23554 1.21105L13.2597 11.2589C13.5914 11.5907 13.7573 11.9738 13.7573 12.4082C13.7573 12.8427 13.5914 13.2258 13.2597 13.5576L3.23554 23.6054C2.91957 23.9214 2.53251 24.0793 2.07435 24.0793C1.6162 24.0793 1.22913 23.9214 0.913163 23.6054C0.597194 23.2894 0.439209 22.9063 0.439209 22.4561C0.439209 22.0058 0.597194 21.6227 0.913163 21.3067L9.7998 12.4201L0.913163 3.53343C0.597194 3.21746 0.439209 2.8304 0.439209 2.37224C0.439209 1.91409 0.597194 1.52702 0.913163 1.21105Z" /></svg>
+            <button onClick={prevProject} className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br from-[#1225B9] to-[#FF2DF7] transition-all duration-300 flex-shrink-0 group">
+              <svg className="w-3 h-5 text-[#14142B] rotate-180 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 15 25"><path d="M0.913163 1.21105C1.22913 0.895084 1.6162 0.737101 2.07435 0.737101C2.53251 0.737101 2.91957 0.895084 3.23554 1.21105L13.2597 11.2589C13.5914 11.5907 13.7573 11.9738 13.7573 12.4082C13.7573 12.8427 13.5914 13.2258 13.2597 13.5576L3.23554 23.6054C2.91957 23.9214 2.53251 24.0793 2.07435 24.0793C1.6162 24.0793 1.22913 23.9214 0.913163 23.6054C0.597194 23.2894 0.439209 22.9063 0.439209 22.4561C0.439209 22.0058 0.597194 21.6227 0.913163 21.3067L9.7998 12.4201L0.913163 3.53343C0.597194 3.21746 0.439209 2.8304 0.439209 2.37224C0.439209 1.91409 0.597194 1.52702 0.913163 1.21105Z" /></svg>
             </button>
             <div className="flex justify-center items-center space-x-1.5">
               {projects.map((_, index) => (
@@ -162,8 +162,8 @@ const PortfolioSection = () => {
                 />
               ))}
             </div>
-            <button onClick={nextProject} className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md hover:shadow-lg transition-shadow flex-shrink-0">
-              <svg className="w-3 h-5 text-[#14142B]" fill="currentColor" viewBox="0 0 15 25"><path d="M0.913163 1.21105C1.22913 0.895084 1.6162 0.737101 2.07435 0.737101C2.53251 0.737101 2.91957 0.895084 3.23554 1.21105L13.2597 11.2589C13.5914 11.5907 13.7573 11.9738 13.7573 12.4082C13.7573 12.8427 13.5914 13.2258 13.2597 13.5576L3.23554 23.6054C2.91957 23.9214 2.53251 24.0793 2.07435 24.0793C1.6162 24.0793 1.22913 23.9214 0.913163 23.6054C0.597194 23.2894 0.439209 22.9063 0.439209 22.4561C0.439209 22.0058 0.597194 21.6227 0.913163 21.3067L9.7998 12.4201L0.913163 3.53343C0.597194 3.21746 0.439209 2.8304 0.439209 2.37224C0.439209 1.91409 0.597194 1.52702 0.913163 1.21105Z" /></svg>
+            <button onClick={nextProject} className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br from-[#1225B9] to-[#FF2DF7] transition-all duration-300 flex-shrink-0 group">
+              <svg className="w-3 h-5 text-[#14142B] group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 15 25"><path d="M0.913163 1.21105C1.22913 0.895084 1.6162 0.737101 2.07435 0.737101C2.53251 0.737101 2.91957 0.895084 3.23554 1.21105L13.2597 11.2589C13.5914 11.5907 13.7573 11.9738 13.7573 12.4082C13.7573 12.8427 13.5914 13.2258 13.2597 13.5576L3.23554 23.6054C2.91957 23.9214 2.53251 24.0793 2.07435 24.0793C1.6162 24.0793 1.22913 23.9214 0.913163 23.6054C0.597194 23.2894 0.439209 22.9063 0.439209 22.4561C0.439209 22.0058 0.597194 21.6227 0.913163 21.3067L9.7998 12.4201L0.913163 3.53343C0.597194 3.21746 0.439209 2.8304 0.439209 2.37224C0.439209 1.91409 0.597194 1.52702 0.913163 1.21105Z" /></svg>
             </button>
           </div>
         </div>

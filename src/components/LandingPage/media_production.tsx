@@ -1,7 +1,7 @@
 import Navigation from "@/components/LandingPage/Navigation";
 import Footer from "@/components/LandingPage/Footer";
 import { Button } from "@/components/ui/button";
-import mediaProductionDecoration from "@/assets/decoration/media_production.png";
+import mediaProductionDecoration from "@/assets/decoration/media_production.webp";
 
 export default function MediaProduction() {
   return (

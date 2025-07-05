@@ -1,6 +1,6 @@
 import Navigation from "@/components/LandingPage/Navigation";
 import { Button } from "@/components/ui/button";
-import arrow from "@/assets/arrow.png";
+import arrow from "@/assets/arrow.webp";
 
 const ContactSection = () => {
   return (
