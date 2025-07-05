@@ -40,7 +40,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/looklike">
         <AppRoutes />
       </BrowserRouter>
     </TooltipProvider>
