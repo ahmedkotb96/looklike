@@ -1,6 +1,6 @@
 import Navigation from "@/components/LandingPage/Navigation";
 import { Button } from "@/components/ui/button";
-import arrow from "@/assets/arrow.webp";
+import bottomEclipse from "@/assets/ellipse_bottom.webp";
 
 const ContactSection = () => {
   return (
@@ -19,7 +19,7 @@ const ContactSection = () => {
           }}
         >
           <img
-            src={arrow}
+            src={bottomEclipse}
             alt="Arrow"
             className="absolute left-0 bottom-36 md:bottom-0 w-full z-10"
           />
