@@ -5,7 +5,7 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative py-8 pt-32 pb-16 max-h-[70vh] md:py-0 md:pt-0 md:pb-[130px] md:max-h-none bg-black md:min-h-screen flex items-center overflow-hidden"
+      className="relative py-8 pt-32 pb-32 mb-36 max-h-[70vh] md:py-0 md:pt-0 md:pb-[130px] md:max-h-none bg-black md:min-h-screen flex items-center overflow-hidden"
     >
       {/* Background gradient */}
       <div
