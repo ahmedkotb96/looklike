@@ -15,6 +15,8 @@ const ContactSection = () => {
           src={bottomEclipse}
           alt="Arrow"
           className="absolute left-0 bottom-[0px] md:bottom-[-250px] min-h w-full h-12 md:h-auto z-10 overflow-hidden"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       

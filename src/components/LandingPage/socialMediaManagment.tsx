@@ -1,3 +1,4 @@
+import React from "react";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { Button } from "@/components/ui/button";
@@ -8,8 +9,34 @@ import qemamImg from "@/assets/social_media_camaigns/qemam.webp";
 import caribyDairyImg from "@/assets/social_media_camaigns/cariby_dairy.webp";
 import dahabiaImg from "@/assets/social_media_camaigns/dahabia.webp";
 import alTakamolImg from "@/assets/social_media_camaigns/al_takamol.webp";
+import ellipseReversed from "@/assets/ellipse_reversed.webp";
+import ContactSection from "./ContactSection";
 
-export default function Index() {
+
+const RightPinkBlur = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="378"
+    height="1264"
+    viewBox="0 0 378 1264"
+    fill="none"
+    className="absolute top-0 right-0 pointer-events-none"
+    style={{ filter: "blur(75px)" }}
+  >
+    <g filter="url(#filter0_f_141_1296)">
+      <path d="M607.295 1110.42C434.983 1149.04 -48.4783 828.244 240.001 768.794C528.48 709.343 195.353 717.988 248.535 334.238C301.717 -49.5124 736.29 240.545 806.007 551.571C875.724 862.598 779.607 1071.8 607.295 1110.42Z" fill="#F41CCC"/>
+    </g>
+    <defs>
+      <filter id="filter0_f_141_1296" x="0.155273" y="0.828125" width="978.747" height="1262.81" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+        <feGaussianBlur stdDeviation="75" result="effect1_foregroundBlur_141_1296"/>
+      </filter>
+    </defs>
+  </svg>
+);
+
+const SocialMediaManagment: React.FC = () => {
   const portfolioItems = [
     {
       title: "Squeeze Social Media Campaign",
@@ -44,119 +71,121 @@ export default function Index() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Background Effects */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute -left-44 -top-16 w-[468px] h-[473px] bg-[#1225B9] rounded-full blur-[75px] opacity-60 rotate-[88.762deg]" />
-        <div className="absolute right-20 top-44 w-[984px] h-[705px] bg-[#F41CCC] rounded-full blur-[75px] opacity-60 rotate-[77.366deg]" />
-      </div>
+    <div className="min-h-screen bg-black text-white font-inter relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Top left blur */}
+          <div
+            className="absolute -top-16 -left-44 w-[468px] h-[473px] opacity-60 rotate-[88.762deg] sm:w-[300px] sm:h-[300px] sm:-top-10 sm:-left-20"
+            style={{
+              background: "#1225B9",
+              filter: "blur(75px)",
+            }}
+          />
 
-      {/* Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-12">
-        <Navigation />
-      </header>
-      <div className="h-20" />
-
-      {/* Hero Section */}
-      <section className="relative z-10 flex flex-col lg:flex-row items-center justify-between px-4 py-20 max-w-7xl mx-auto gap-12">
-        <div className="flex-1 max-w-2xl">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-dm-sans leading-tight mb-6">
-            <span className="text-white">Social Media </span>
-            <span className="gradient-text">Management</span>
-          </h1>
-
-          <p className="text-white text-base md:text-lg font-normal font-inter leading-relaxed mb-8 max-w-lg">
-            We manage your platforms with purpose and strategy — creating
-            content that connects, engages, and converts. From planning and
-            copywriting to design and analytics, our team handles every detail
-            to keep your brand active, aligned, and always ahead. Whether you're
-            building awareness or driving sales, we turn your social media into
-            a powerful growth engine.
-          </p>
-
-          <a href="https://wa.me/201022668840" target="_blank" rel="noopener noreferrer">
-            <Button className="relative px-8 py-4 bg-white/10 border border-white/20 rounded-xl backdrop-blur-[10px] hover:bg-white/25 hover:border-white/30 active:bg-white/30 transition-all duration-500 ease-out shadow-[0px_0px_8px_4px_rgba(255,255,255,0.15)_inset] hover:shadow-[0px_0px_20px_8px_rgba(255,255,255,0.25)_inset,0px_8px_32px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group overflow-hidden">
-              <span className="relative text-white text-base font-medium mr-3 group-hover:text-white/95 transition-colors duration-300">Get In Touch !</span>
-            </Button>
-          </a>
+          {/* Top right blur */}
+          <RightPinkBlur />
         </div>
+        
+        {/* Content Container */}
+        <div className="relative z-10">
+        <Navigation />
 
-        <div className="flex-1 max-w-2xl">
+        {/* Hero Section */}
+        <section className="relative z-10 flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 md:px-8 lg:px-8 py-16 sm:py-20 md:py-28 pb-8 sm:pb-12 md:pb-16 max-w-7xl mx-auto">
+          <div className="flex flex-col items-start gap-4 max-w-full lg:max-w-[612px] mb-8 lg:mb-0">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[96px] font-dm-sans font-black leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-[95px]">
+              <span className="text-white">Social Media </span>
+              <span className="bg-[linear-gradient(267deg,_#00F0FF_4.01%,_#5200FF_57.55%,_#FF2DF7_114.97%)] bg-clip-text text-transparent">Management</span>
+            </h1>
+            <p className="text-white font-inter text-sm sm:text-base md:text-lg lg:text-[17px] font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-[24px] max-w-full lg:max-w-[579px] mt-4">
+              We manage your platforms with purpose and strategy — creating content that connects, engages, and converts. From planning and copywriting to design and analytics, our team handles every detail to keep your brand active, aligned, and always ahead. Whether you're building awareness or driving sales, we turn your social media into a powerful growth engine.
+            </p>
+
+            <a href="https://wa.me/201022668840" target="_blank" rel="noopener noreferrer">
+              <Button className="relative px-8 py-4 bg-white/10 border border-white/20 rounded-xl backdrop-blur-[10px] hover:bg-white/25 hover:border-white/30 active:bg-white/30 transition-all duration-500 ease-out shadow-[0px_0px_8px_4px_rgba(255,255,255,0.15)_inset] hover:shadow-[0px_0px_20px_8px_rgba(255,255,255,0.25)_inset,0px_8px_32px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group overflow-hidden">
+                {/* Subtle shimmer effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                </div>
+                
+                <span className="relative text-white text-base font-medium mr-3 group-hover:text-white/95 transition-colors duration-300">Get In Touch !</span>
+                <svg
+                  className="relative w-5 h-4 text-white group-hover:translate-x-2 group-hover:scale-110 transition-all duration-500 ease-out"
+                  fill="currentColor"
+                  viewBox="0 0 18 14"
+                >
+                  <path d="M17.681 7.70853L11.2022 13.7067C10.9993 13.8945 10.7242 14 10.4373 14C10.1504 14 9.87529 13.8945 9.67243 13.7067C9.46958 13.5189 9.35561 13.2642 9.35561 12.9986C9.35561 12.733 9.46958 12.4783 9.67243 12.2905L14.3075 8.00094H1.07981C0.793429 8.00094 0.518775 7.89562 0.31627 7.70814C0.113766 7.52066 0 7.26638 0 7.00125C0 6.73611 0.113766 6.48184 0.31627 6.29436C0.518775 6.10688 0.793429 6.00156 1.07981 6.00156H14.3075L9.67423 1.70954C9.47137 1.52174 9.35741 1.26702 9.35741 1.00143C9.35741 0.735832 9.47137 0.481115 9.67423 0.293311C9.87709 0.105507 10.1522 2.7985e-09 10.4391 0C10.726 -2.7985e-09 11.0011 0.105507 11.204 0.293311L17.6828 6.29147C17.7835 6.38447 17.8634 6.49497 17.9178 6.61662C17.9722 6.73827 18.0002 6.86867 18 7.00035C17.9998 7.13202 17.9716 7.26236 17.9168 7.3839C17.8621 7.50543 17.782 7.61575 17.681 7.70853Z" />
+                </svg>
+              </Button>
+            </a>
+          </div>
+          <div className="flex-shrink-0 w-full lg:w-auto flex justify-center">
+            <img
+              src={socialMediaManagementDecoration}
+              alt="Social Media Management Decoration"
+              className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] xl:w-[672px] xl:h-[672px] object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </section>
+
+        {/* Portfolio Grid */}
+        <section className="relative z-40 px-6 sm:px-8 md:px-16 lg:px-32 py-4 sm:py-6 md:py-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16">
+            {portfolioItems.map((item, idx) => (
+              <div key={idx} className="flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors">
+                <div className="flex h-[250px] sm:h-[280px] md:h-[319px] justify-center items-center rounded-[11px] overflow-hidden">
+                  <img
+                    src={item.imageSrc}
+                    alt={item.title}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="flex flex-col gap-2 px-2 pb-2">
+                  <h3 className="text-white font-inter text-base sm:text-lg font-bold leading-tight">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-100 font-inter text-xs font-normal leading-relaxed opacity-80">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center relative z-50">
+            <p className="text-white text-lg md:text-2xl font-normal font-inter leading-relaxed max-w-3xl mx-auto mb-8">
+              At Looklike, we craft every social media campaign with attention to the smallest detail — from content strategy to visual design and engagement metrics. Explore more of our social media management projects.
+            </p>
+
+            <Button className="relative px-8 py-4 bg-white/10 border border-white/20 rounded-xl backdrop-blur-[10px] hover:bg-white/25 hover:border-white/30 active:bg-white/30 transition-all duration-500 ease-out shadow-[0px_0px_8px_4px_rgba(255,255,255,0.15)_inset] hover:shadow-[0px_0px_20px_8px_rgba(255,255,255,0.25)_inset,0px_8px_32px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group overflow-hidden">
+              <span className="relative text-white text-base font-medium mr-3 group-hover:text-white/95 transition-colors duration-300">Explore More</span>
+            </Button>
+          </div>
+        </section>
+
+        {/* eclipse reversed image */}
+        <div className="w-full flex justify-center relative z-30 -translate-y-16 md:-translate-y-56 pointer-events-none">
           <img
-            src={socialMediaManagementDecoration}
-            alt="Social Media Management Illustration"
-            className="w-full h-auto max-w-[650px] mx-auto"
+            src={ellipseReversed}
+            alt="Section bottom decorative ellipse"
+            className="w-full max-w-none object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
-      </section>
 
-      {/* Portfolio Section */}
-      <section className="relative py-24 pb-64 bg-black">
-        {/* Background gradient */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, #000 0%, #1225B9 57.83%, #000 100%)",
-          }}
-        />
+        {/* Contact Section */}
+        <ContactSection />
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16 max-w-4xl mx-auto">
-            <h2 className="text-white text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              Our Social Media
-              <br />
-              Campaigns
-            </h2>
-            <p className="text-white text-lg">
-              Take a look at our latest social media projects where creativity meets strategy.
-            </p>
-          </div>
-
-          {/* Portfolio Grid */}
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {portfolioItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800"
-                >
-                  <div className="flex h-[319px] justify-center items-center rounded-[11px] overflow-hidden">
-                    <img
-                      src={item.imageSrc}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2 px-2 pb-2">
-                    <h3 className="text-white font-inter text-xl font-bold leading-tight truncate">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-100 font-inter text-sm font-normal leading-relaxed opacity-80 truncate">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center">
-              <p className="text-white text-lg md:text-2xl font-normal font-inter leading-relaxed max-w-3xl mx-auto mb-8">
-                At Looklike, we craft every social media campaign with attention to the smallest
-                detail — from content strategy to visual design and engagement metrics. Explore
-                more of our social media management projects.
-              </p>
-
-              <Button className="relative px-8 py-4 bg-white/10 border border-white/20 rounded-xl backdrop-blur-[10px] hover:bg-white/25 hover:border-white/30 active:bg-white/30 transition-all duration-500 ease-out shadow-[0px_0px_8px_4px_rgba(255,255,255,0.15)_inset] hover:shadow-[0px_0px_20px_8px_rgba(255,255,255,0.25)_inset,0px_8px_32px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group overflow-hidden">
-                <span className="relative text-white text-base font-medium mr-3 group-hover:text-white/95 transition-colors duration-300">Explore More</span>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
-}
+};
+
+export default SocialMediaManagment;

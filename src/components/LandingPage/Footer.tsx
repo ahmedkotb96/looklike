@@ -4,7 +4,7 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <footer className="relative bg-white/[0.01] backdrop-blur-[7px] border-t border-white/10 px-4 sm:px-6 lg:px-8 mt-8 sm:mt-0">
+    <footer className="relative bg-black backdrop-blur-[7px] border-t border-white/10 px-4 sm:px-6 lg:px-8 mt-8 sm:mt-0">
       <div className="container mx-auto px-4 py-12">
         {/* Main Footer Content */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-8">
@@ -14,6 +14,8 @@ const Footer = () => {
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/19262947c98dfd5570bca883385edc5103f3b892"
               alt="Look Like Logo"
               className="h-16 w-auto transition-all duration-500 ease-out group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.3)] group-hover:brightness-110"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 

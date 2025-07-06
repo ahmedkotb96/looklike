@@ -72,6 +72,8 @@ const Navigation = () => {
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/a08f03de9482231f373ce49cbf84244b8b6a4812"
               alt="Look Like Logo"
               className="h-12 w-auto cursor-pointer"
+              loading="lazy"
+              decoding="async"
             />
           </a>
 

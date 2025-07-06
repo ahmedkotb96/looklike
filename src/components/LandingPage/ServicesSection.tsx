@@ -210,7 +210,7 @@ const ServicesSection = () => {
     <section id="services" className="relative mt-0 sm:mb-16 sm:py-16 lg:py-24 overflow-hidden">
       {/* Gradient Blob */}
       <div className="absolute top-32 right-0 w-[150px] h-[800px] pointer-events-none z-0">
-        <img src={PinkVector} alt="" className="w-full h-full object-cover" />
+        <img src={PinkVector} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Move Introductory Text above the section heading */}

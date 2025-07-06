@@ -321,6 +321,8 @@ export default function OurTeamMain() {
           src={bottomEclipse}
           alt="Arrow"
           className="absolute left-0 bottom-[0px] md:bottom-[-250px] min-h w-full h-12 md:h-auto z-10 overflow-hidden"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div className="container mx-auto px-4 relative z-10 md:px-4">

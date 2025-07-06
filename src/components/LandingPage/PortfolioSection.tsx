@@ -108,6 +108,8 @@ const PortfolioSection = () => {
                     alt={projects[currentProject].title}
                     className="w-full h-full object-cover rounded-t-[50px] md:rounded-l-[50px] md:rounded-tr-none cursor-pointer"
                     onClick={() => navigate("/branding_identity_design")}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 {/* Content Section */}
@@ -190,6 +192,8 @@ const PortfolioSection = () => {
           src={homeBottomLeft}
           alt="3D decorative element"
           className="w-[517px] h-[517px] object-contain"
+          loading="lazy"
+          decoding="async"
         />
       </div>
     </section>

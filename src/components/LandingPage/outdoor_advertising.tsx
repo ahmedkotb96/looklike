@@ -88,6 +88,8 @@ export default function MediaProduction() {
               src={outdoorAdvertisingDecoration}
               alt="Outdoor Advertising Visualization"
               className="w-full max-w-[679px] h-auto rounded-lg"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>

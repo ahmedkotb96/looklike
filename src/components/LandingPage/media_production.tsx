@@ -90,6 +90,8 @@ export default function MediaProduction() {
               src={mediaProductionDecoration}
               alt="3D Media Production Visualization"
               className="w-full max-w-[679px] h-auto rounded-lg"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>

@@ -137,13 +137,15 @@ const TeamSection = () => {
   return (
     <section id="team" className="relative pt-24 pb-96 bg-black overflow-hidden">
       <div className="absolute bottom-64 right-0 w-[330px] h-[800px] pointer-events-none z-0">
-        <img src={bottomVector} alt="" className="w-full h-full object-cover" />
+        <img src={bottomVector} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
       </div>
       <div className="absolute -left-32 bottom-0">
         <img
           src={homeBottomRight}
           alt="3D decorative element"
           className="w-[540px] h-[550px] md:w-[540px] md:h-[550px] object-contain opacity-80"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <style>{`

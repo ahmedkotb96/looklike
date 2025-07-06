@@ -90,6 +90,8 @@ const CompanyItem = ({ logo, alt }: CompanyItemProps) => {
         src={logo}
         alt={alt}
         className="max-w-full max-h-full object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-300"
+        loading="lazy"
+        decoding="async"
       />
     </div>
   );
@@ -143,7 +145,7 @@ const TrustedCompaniesSection = () => {
     <section id="about" className="relative pt-32 pb-0 bg-black">
       {/* Blue Gradient */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[200px] h-[600px] pointer-events-none z-0">
-        <img src={blueLeftVectorTrustedSection} alt="" className="w-full h-full object-cover" />
+        <img src={blueLeftVectorTrustedSection} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
       </div>
 
 

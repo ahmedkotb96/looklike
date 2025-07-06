@@ -116,6 +116,8 @@ export default function Index() {
               src={aboutUsImg}
               alt="cube-helix"
               className="w-full max-w-lg mx-auto"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -145,6 +147,8 @@ export default function Index() {
                 src={src}
                 alt={`Partner ${index + 1}`}
                 className="max-w-full h-12 object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           ))}
@@ -274,6 +278,8 @@ export default function Index() {
                 src={astronautImg}
                 alt="Why choose us"
                 className="w-full rounded-3xl"
+                loading="lazy"
+                decoding="async"
               />
               {/* Text overlay on the image */}
               <div className="absolute inset-0  rounded-3xl flex items-end justify-start">
@@ -370,6 +376,8 @@ export default function Index() {
           src={bottomEclipse}
           alt="Arrow"
           className="absolute left-0 bottom-[0px] md:bottom-[-250px] min-h w-full h-12 md:h-auto z-10 overflow-hidden"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div className="container mx-auto px-4 relative z-10 md:px-4">

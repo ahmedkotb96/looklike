@@ -40,6 +40,8 @@ const HeroSection = () => {
         <img
           src={homeTopLeft} alt="Decorative star"
           className="w-[320px] h-[325px] sm:w-[400px] sm:h-[410px] lg:w-[520px] lg:h-[530px] object-contain opacity-70"
+          loading="lazy"
+          decoding="async"
         />
       </div>
 
@@ -48,6 +50,8 @@ const HeroSection = () => {
         <img
           src={homeTopRight} alt="Visual element"
           className="w-[260px] h-[265px] sm:w-[320px] sm:h-[325px] lg:w-[450px] lg:h-[500px] object-contain opacity-70"
+          loading="lazy"
+          decoding="async"
         />
       </div>
 
@@ -82,6 +86,8 @@ const HeroSection = () => {
         src={eclipse2}
         alt="Decorative arrow pointing down"
         className="absolute -bottom-[30px] sm:-bottom-[250px] left-0 w-full z-10 pointer-events-none"
+        loading="lazy"
+        decoding="async"
       />
     </section>
   );
