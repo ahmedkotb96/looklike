@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import homeBottomLeft from "@/assets/decoration/home_bottom_left.webp";
-import cinnarollsBrandIdentity from "@/assets/Portfolio_imgs/cinnarolls_brand_identity.webp";
-import elmassaBrandIdentity from "@/assets/Portfolio_imgs/elmassa_brand_identity.webp";
-import homeBrandIdentity from "@/assets/Portfolio_imgs/home_brand_identity.webp";
-import zodiacBrandIdentity from "@/assets/Portfolio_imgs/zodiac_brand_identity.webp";
-import centromallBrandIdentity from "@/assets/Portfolio_imgs/centromall_brand_identity.webp";
+import cinnarollsBrandIdentity from "@/assets/Portfolio_imgs/cinnarolls_portfolio.webp";
+import elmassaBrandIdentity from "@/assets/Portfolio_imgs/elmassa_portfolio.webp";
+import ihomeBrandIdentity from "@/assets/Portfolio_imgs/ihome_portfolio.webp";
+import zodiacBrandIdentity from "@/assets/Portfolio_imgs/zodiac_portfolio.webp";
+import centromallBrandIdentity from "@/assets/Portfolio_imgs/centromall_portfolio.webp";
 
 const PortfolioSection = () => {
   const [currentProject, setCurrentProject] = useState(0);
@@ -17,7 +17,7 @@ const PortfolioSection = () => {
       title: "iHome",
       description:
         "We crafted a modern and clean visual identity for i Home, reflecting the brand's focus on smart living and contemporary design.",
-      image: homeBrandIdentity,
+      image: ihomeBrandIdentity,
       logo: "https://cdn.builder.io/api/v1/image/assets/TEMP/19262947c98dfd5570bca883385edc5103f3b892",
     },
     {
