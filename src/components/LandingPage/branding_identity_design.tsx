@@ -102,7 +102,14 @@ export default function Index() {
         <section className="relative z-40 px-6 sm:px-8 md:px-16 lg:px-32 py-4 sm:py-6 md:py-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16">
             {/* Centro Mall */}
-            <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
+            <a
+              href="https://www.behance.net/gallery/217193023/Centro-Mall-Brand-identity"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+              tabIndex={0}
+            >
+              <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
               {/* Hover Button */}
               <button
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-auto"
@@ -141,9 +148,17 @@ export default function Index() {
                 </p>
               </div>
             </div>
+            </a>
 
             {/* i home */}
-            <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
+            <a
+              href="https://www.behance.net/gallery/229418657/ihome-Brand-Identity"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+              tabIndex={0}
+            >
+              <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
               {/* Hover Button */}
               <button
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-auto"
@@ -182,9 +197,17 @@ export default function Index() {
                 </p>
               </div>
             </div>
+            </a>
 
             {/* Zodiac */}
-            <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
+            <a
+              href="https://www.behance.net/gallery/202135987/ZODIAC-LOGO-DESIGN"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+              tabIndex={0}
+            >
+              <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
               {/* Hover Button */}
               <button
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-auto"
@@ -223,9 +246,17 @@ export default function Index() {
                 </p>
               </div>
             </div>
+            </a>
 
             {/* CinnaRolls */}
-            <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
+            <a
+              href="https://www.behance.net/gallery/217193457/Cinnarolls-Brand-identity"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+              tabIndex={0}
+            >
+              <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
               {/* Hover Button */}
               <button
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-auto"
@@ -264,9 +295,17 @@ export default function Index() {
                 </p>
               </div>
             </div>
+            </a>
 
             {/* Leading Diamond */}
-            <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
+            <a
+              href="https://www.behance.net/gallery/218801461/ALMASA-BRAND-IDIDINTITY"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+              tabIndex={0}
+            >
+              <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
               {/* Hover Button */}
               <button
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-auto"
@@ -305,9 +344,17 @@ export default function Index() {
                 </p>
               </div>
             </div>
+            </a>
 
             {/* Aamen */}
-            <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
+            <a
+              href="https://www.behance.net/gallery/201654137/AAMEN-LOGO-DESIGN"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+              tabIndex={0}
+            >
+              <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
               {/* Hover Button */}
               <button
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-auto"
@@ -346,6 +393,7 @@ export default function Index() {
                 </p>
               </div>
             </div>
+            </a>
           </div>
 
           {/* Description and Explore More */}
