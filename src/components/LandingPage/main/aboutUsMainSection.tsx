@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/LandingPage/Navigation";
 import Footer from "@/components/LandingPage/Footer";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,7 @@ import astronautImg from "@/assets/astronaut.webp";
 import bottomEclipse from "@/assets/ellipse_bottom.webp";
 
 export default function Index() {
+  const navigate = useNavigate();
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   const toggleSection = (section: string) => {
@@ -128,7 +130,7 @@ export default function Index() {
         <h2 className="text-xl font-bold text-center text-white mb-10">
           Trusted by most innovative Companies
         </h2>
-        <div className="grid grid-cols-4 gap-6 px-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4 md:px-16">
           {[
             al_rehab_development,
             babel,
@@ -141,7 +143,7 @@ export default function Index() {
           ].map((src, index) => (
             <div
               key={index}
-              className="flex flex-col justify-center items-center gap-[3.401px] w-[241.818px] h-[109.175px] pt-[7.142px] pb-[7.142px] pl-[15.645px] pr-[15.645px] rounded-2xl border border-gray-400/50 bg-gray-400/0 hover:bg-gray-400/10 transition-colors"
+              className="flex flex-col justify-center items-center gap-1 w-full h-[110px] p-4 rounded-2xl border border-gray-400/50 bg-gray-400/0 hover:bg-gray-400/10 transition-colors"
             >
               <img
                 src={src}
@@ -295,19 +297,18 @@ export default function Index() {
                     <p>impactful campaigns.</p>
                   </div>
                   <div className="flex justify-center">
-                    <a href="https://wa.me/201022668840" target="_blank" rel="noopener noreferrer">
-                      <Button
-                        className="group flex items-center justify-center w-10 h-10 rounded-full bg-[#000] hover:bg-[#1a1a1a] hover:scale-105 transition-all duration-300 ease-in-out border-0"
+                    <Button
+                      className="group flex items-center justify-center w-10 h-10 rounded-full bg-[#000] hover:bg-[#1a1a1a] hover:scale-105 transition-all duration-300 ease-in-out border-0"
+                      onClick={() => navigate('/team')}
+                    >
+                      <svg
+                        className="w-5 h-5 text-white transition-transform duration-300 ease-in-out group-hover:translate-x-1"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
                       >
-                        <svg
-                          className="w-5 h-5 text-white transition-transform duration-300 ease-in-out group-hover:translate-x-1"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" />
-                        </svg>
-                      </Button>
-                    </a>
+                        <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" />
+                      </svg>
+                    </Button>
                   </div>
                 </div>
               </div>

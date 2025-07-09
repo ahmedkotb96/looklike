@@ -1,13 +1,16 @@
 import Navigation from "@/components/LandingPage/Navigation";
 import Footer from "@/components/LandingPage/Footer";
-import { Button } from "@/components/ui/button";
+import GetInTouchButton from "@/components/ui/GetInTouchButton";
 import mediaProductionDecoration from "@/assets/decoration/media_production.webp";
+import ellipseReversed from "@/assets/ellipse_reversed.webp";
+import ContactSection from "@/components/LandingPage/ContactSection";
 
 export default function MediaProduction() {
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Background blur effects */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Top left blur */}
         <svg
           className="absolute -left-36 -top-36 w-[468px] h-[473px] text-blue-600 opacity-75"
           style={{ filter: "blur(75px)", transform: "rotate(88.762deg)" }}
@@ -21,19 +24,8 @@ export default function MediaProduction() {
             fill="currentColor"
           />
         </svg>
-        <svg
-          className="absolute -left-44 bottom-0 w-[468px] h-[473px] text-blue-600 opacity-75"
-          style={{ filter: "blur(75px)", transform: "rotate(179.306deg)" }}
-          width="446"
-          height="773"
-          viewBox="0 0 446 773"
-          fill="none"
-        >
-          <path
-            d="M-172.839 413.486C-174.276 294.925 21.7961 22.8817 21.7715 220.637C21.7468 418.392 49.7539 198.505 223.567 287.607C397.38 376.71 220.343 621.005 68.6188 622.844C-83.1055 624.683 -171.402 532.047 -172.839 413.486Z"
-            fill="currentColor"
-          />
-        </svg>
+        
+        {/* Top right blur */}
         <svg
           className="absolute right-0 top-80 w-[984px] h-[705px] text-pink-500 opacity-75"
           style={{ filter: "blur(75px)" }}
@@ -49,97 +41,172 @@ export default function MediaProduction() {
         </svg>
       </div>
 
-      {/* Motion blur overlay */}
-      <div className="absolute inset-0 bg-black/3 backdrop-blur-[100px]" />
+      {/* Content Container */}
+      <div className="relative z-10">
+        <Navigation />
 
-      {/* Navigation */}
-      <Navigation />
+        {/* Hero Section */}
+        <section className="relative z-10 max-w-7xl mx-auto px-5 py-16 pt-32">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+            {/* Left Content */}
+            <div className="flex flex-col items-start gap-6 lg:w-1/2 text-center lg:text-left">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black font-['DM_Sans'] leading-tight">
+                <span className="text-white">Media </span>
+                <span className="bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] bg-clip-text text-transparent">
+                  Production
+                </span>
+              </h1>
 
-      {/* Hero Section */}
-      <section className="relative z-10 max-w-7xl mx-auto px-5 py-16 pt-32">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
-          {/* Left Content */}
-          <div className="flex flex-col items-start gap-6 lg:w-1/2 text-center lg:text-left">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black font-['DM_Sans'] leading-tight">
-              <span className="text-white">Media </span>
-              <span className="bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] bg-clip-text text-transparent">
-                Production
-              </span>
-            </h1>
+              <p className="text-white/80 text-lg leading-relaxed">
+                We bring your brand's story to life through high-quality media
+                production. Whether it's a promotional video, professional
+                photography, or eye-catching motion graphics, our production
+                team delivers stunning visuals that captivate your audience.
+                From concept and scripting to filming and post-production, we
+                ensure every frame reflects your brand's vision and
+                professionalism.
+              </p>
 
-            <p className="text-white/80 text-lg leading-relaxed">
-              We bring your brand's story to life through high-quality media
-              production. Whether it's a promotional video, professional
-              photography, or eye-catching motion graphics, our production
-              team delivers stunning visuals that captivate your audience.
-              From concept and scripting to filming and post-production, we
-              ensure every frame reflects your brand's vision and
-              professionalism.
+              <GetInTouchButton />
+            </div>
+
+            {/* Right Image */}
+            <div className="lg:w-1/2 flex justify-center lg:justify-end">
+              <img
+                src={mediaProductionDecoration}
+                alt="3D Media Production Visualization"
+                className="w-full max-w-[679px] h-auto rounded-lg"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </section>
+        
+        {/* === Video Showcase Section === */}
+        <section className="relative z-40 max-w-7xl mx-auto px-5 pb-16 lg:pb-24">
+          {/* Section Heading */}
+          <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-black font-['DM_Sans'] leading-tight">
+                <span className="text-white">Our Work in </span>
+                <span className="bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] bg-clip-text text-transparent">
+                  Motion
+                </span>
+              </h2>
+          </div>
+
+          {/* Video Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Video 1 Slot */}
+            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/gEhJqwWNhhQ"
+                style={{ border: 'none' }}
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen={true}
+                title="Looklike YouTube Video"
+                loading="lazy"
+              ></iframe>
+            </div>
+
+            {/* Video 2 Slot */}
+            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/uiduCPhepwQ?si=Vl5uyWGem_I0ac0b"
+                style={{ border: 'none' }}
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen={true}
+                title="Media Production Example 2"
+                loading="lazy"
+              ></iframe>
+            </div>
+
+            {/* Video 3 Slot */}
+            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/5EPlte9OEmI"
+                style={{ border: 'none' }}
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen={true}
+                title="Looklike YouTube Video 3"
+                loading="lazy"
+              ></iframe>
+            </div>
+
+            {/* Video 4 Slot */}
+            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/2MZIunJGbU0"
+                style={{ border: 'none' }}
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen={true}
+                title="Looklike YouTube Video 4"
+                loading="lazy"
+              ></iframe>
+            </div>
+
+            {/* Video 5 Slot */}
+            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/zXpX3aCrGLk"
+                style={{ border: 'none' }}
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen={true}
+                title="Looklike YouTube Video 5"
+                loading="lazy"
+              ></iframe>
+            </div>
+            
+            {/* Video 6 Slot */}
+            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/4DUDdIVVqpY"
+                style={{ border: 'none' }}
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen={true}
+                title="Looklike YouTube Video 6"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+
+          {/* Description and Explore More */}
+          <div className="text-center relative z-50 mt-16 sm:mt-20 md:mt-24">
+            <p className="text-white font-inter text-lg sm:text-xl md:text-2xl lg:text-[24px] font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-[34px] max-w-full sm:max-w-[600px] md:max-w-[717px] mx-auto mb-6 sm:mb-8 px-4">
+              We bring stories to life with cinematic quality and creative passion. Every frame is crafted to captivate, engage, and deliver your message with impact. Explore more of our work in motion.
             </p>
 
-            <a href="https://wa.me/201022668840" target="_blank" rel="noopener noreferrer">
-              <Button className="relative px-8 py-4 bg-white/10 border border-white/20 rounded-xl backdrop-blur-[10px] hover:bg-white/25 hover:border-white/30 active:bg-white/30 transition-all duration-500 ease-out shadow-[0px_0px_8px_4px_rgba(255,255,255,0.15)_inset] hover:shadow-[0px_0px_20px_8px_rgba(255,255,255,0.25)_inset,0px_8px_32px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group overflow-hidden">
-                <span className="relative text-white text-base font-medium mr-3 group-hover:text-white/95 transition-colors duration-300">Get In Touch !</span>
-              </Button>
-            </a>
+            <button className="flex mx-auto px-4 sm:px-[15px] py-2 sm:py-[6px] justify-center items-center gap-2 sm:gap-[10px] rounded-[10px] border border-white/15 bg-gray-500/40 backdrop-blur-[7px] shadow-[0px_0px_6px_3px_rgba(255,255,255,0.25)_inset] hover:bg-gray-500/50 hover:scale-105 hover:shadow-xl transition-all duration-300 group">
+              <span className="text-white font-inter text-sm sm:text-[14px] font-normal leading-[26px] tracking-[-0.001px] group-hover:text-white/95 transition-colors duration-300">
+                Explore More
+              </span>
+            </button>
           </div>
+        </section>
 
-          {/* Right Image */}
-          <div className="lg:w-1/2 flex justify-center lg:justify-end">
-            <img
-              src={mediaProductionDecoration}
-              alt="3D Media Production Visualization"
-              className="w-full max-w-[679px] h-auto rounded-lg"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+        {/* ellipse reversed image as overlay */}
+        <div className="w-full flex justify-center relative z-30 -translate-y-16 md:-translate-y-56 pointer-events-none">
+          <img
+            src={ellipseReversed}
+            alt="Section bottom decorative ellipse"
+            className="w-full max-w-none object-cover"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-      </section>
 
-      {/* Why Choose Us Section */}
-      <section className="relative z-10 py-32">
-        <div className="max-w-7xl mx-auto px-5 text-center">
-          <p className="text-white/80 text-lg leading-relaxed max-w-3xl mx-auto mb-8">
-            At Looklike, we craft every brand with attention to the smallest
-            detail — from the logo to the colors and tone of voice. Explore
-            more of our visual identity projects.
-          </p>
+        {/* Contact Section */}
+        <ContactSection />
 
-          <h2 className="text-4xl md:text-5xl lg:text-[65px] font-bold leading-tight mb-8">
-            <span className="bg-gradient-to-r from-[#142EF5] to-[#F41CCC] bg-clip-text text-transparent">
-              Why Choose Us for Your
-            </span>
-            <br />
-            <span className="text-white">Marketing Needs?</span>
-          </h2>
-
-          <p className="text-white/80 text-lg leading-relaxed max-w-4xl mx-auto mb-12">
-            At Looklike, we don't just market — we build success stories. With
-            a mix of creativity, experience, and market insight, we craft
-            powerful campaigns tailored to each brand. Our team is dedicated
-            to delivering real results through smart, impactful advertising
-            and marketing solutions.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/201022668840" target="_blank" rel="noopener noreferrer">
-              <Button className="relative px-8 py-4 bg-white/10 border border-white/20 rounded-xl backdrop-blur-[10px] hover:bg-white/25 hover:border-white/30 active:bg-white/30 transition-all duration-500 ease-out shadow-[0px_0px_8px_4px_rgba(255,255,255,0.15)_inset] hover:shadow-[0px_0px_20px_8px_rgba(255,255,255,0.25)_inset,0px_8px_32px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group overflow-hidden">
-                <span className="relative text-white text-base font-medium group-hover:text-white/95 transition-colors duration-300">Get In Touch !</span>
-              </Button>
-            </a>
-
-            <Button 
-              className="relative px-8 py-4 bg-white/10 border border-white/20 rounded-xl backdrop-blur-[10px] hover:bg-white/25 hover:border-white/30 active:bg-white/30 transition-all duration-500 ease-out shadow-[0px_0px_8px_4px_rgba(255,255,255,0.15)_inset] hover:shadow-[0px_0px_20px_8px_rgba(255,255,255,0.25)_inset,0px_8px_32px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group overflow-hidden"
-            >
-              <span className="relative text-white text-base font-medium group-hover:text-white/95 transition-colors duration-300">Explore More</span>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <Footer />
+        {/* Footer */}
+        <Footer />
+      </div> {/* Close Content Container */}
     </div>
   );
 }
