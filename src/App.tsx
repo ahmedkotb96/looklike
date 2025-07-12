@@ -28,9 +28,9 @@ const AppRoutes = () => {
       <Route path="/media-production" element={<MediaProductionPage />} />
       <Route path="/outdoor-advertising" element={<OutdoorAdvertisingPage />} />
       <Route path="/social-media-management" element={<SocialMediaManagementPage />} />
-      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
   );
 };
 
