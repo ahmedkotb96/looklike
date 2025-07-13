@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { X, Menu, ChevronDown } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import looklikeLogo from "@/assets/looklike_logo.png";
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -76,7 +77,7 @@ const Navigation = () => {
             aria-label="Go to home section"
           >
             <img
-              src="/src/assets/Looklike_logo.png"
+              src={looklikeLogo}
               alt="Looklike Logo"
               className="h-12 w-auto cursor-pointer"
               loading="lazy"

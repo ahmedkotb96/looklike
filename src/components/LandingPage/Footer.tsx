@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import looklikeLogo from "@/assets/looklike_logo.png";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Footer = () => {
           {/* Logo */}
           <div className="flex-shrink-0 group">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/19262947c98dfd5570bca883385edc5103f3b892"
+              src={looklikeLogo}
               alt="Look Like Logo"
               className="h-16 w-auto transition-all duration-500 ease-out group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.3)] group-hover:brightness-110"
               loading="lazy"
