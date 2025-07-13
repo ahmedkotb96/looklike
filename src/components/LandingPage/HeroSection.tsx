@@ -1,26 +1,24 @@
 import { Button } from "@/components/ui/button";
 import homeTopLeft from "@/assets/decoration/home_top_left.webp";
 import homeTopRight from "@/assets/decoration/home_top_right.webp";
-import eclipse2 from "@/assets/Ellipse_2.webp";
 
 const HeroSection = () => {
   return (
     <section
       // FINAL RESPONSIVE LOGIC: Handles all screen types correctly.
       className="relative flex flex-col items-center overflow-hidden
-        
         /* 1. Base (Mobile): Compact padding, no min-height. */
         /* INCREASED bottom padding for mobile version. */
-        pt-28 pb-32
+        pt-28 pb-16
 
-        /* 2. Portrait Tablet (e.g., 1024x1366): Fills the screen height (100vh) with balanced padding. */
-        lg:portrait:min-h-screen lg:portrait:py-40
+        /* 2. Portrait Tablet (e.g., 1024x1366): Reduced height with balanced padding. */
+        lg:portrait:min-h-[80vh] lg:portrait:py-32
 
-        /* 3. Landscape Desktop: Restores the original expansive 150vh design with even more bottom padding. */
-        lg:landscape:min-h-[150vh] lg:landscape:pt-[25vh] lg:landscape:pb-[64vh]
+        /* 3. Landscape Desktop: Reduced height with less padding. */
+        lg:landscape:min-h-[100vh] lg:landscape:pt-[15vh] lg:landscape:pb-[10vh]
       "
     >
-      {/* Background Elements */}
+      {/* Background Elements - Extended 50px below section */}
       <BackgroundLayers />
       
       {/* Decorative Elements */}
@@ -29,33 +27,70 @@ const HeroSection = () => {
       {/* Main Content */}
       <MainContent />
 
-      {/* This part includes the previous fix for the ellipse image */}
-      <div 
-        className="absolute left-0 bottom-[-20px] md:bottom-[-100px] w-full z-10 pointer-events-none"
-      >
-        <img
-          src={eclipse2}
-          alt="Decorative ellipse at bottom"
-          className="w-full h-auto object-cover"
-          loading="lazy"
-          decoding="async"
-        />
+      {/* SVG decorative element at bottom */}
+      <div className="absolute left-0 bottom-0 w-full z-30 pointer-events-none" style={{ marginTop: 'clamp(6rem, 15vw, 12rem)' }}>
+        <svg 
+          width="100%" 
+          height="133" 
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full 
+                     /* Mobile: Much larger SVG height */
+                     h-[175px] 
+                     /* Tablet and up: Standard responsive sizes */
+                     md:h-[200px] lg:h-[300px] xl:h-[400px]"
+          preserveAspectRatio="xMidYMid slice"
+          viewBox="0 0 800 133"
+        >
+          <defs>
+            <radialGradient id="radialGradientHero" cx="50%" cy="50%" r="51.38%">
+              <stop offset="82.2%" stopColor="#000000" stopOpacity="1" />
+              <stop offset="100%" stopColor="#1146D7" stopOpacity="1" />
+            </radialGradient>
+            <clipPath id="cropClipHero">
+              <rect x="0" y="0" width="800" height="133" />
+            </clipPath>
+          </defs>
+          <rect 
+            x="0" 
+            y="0" 
+            width="800" 
+            height="400" 
+            rx="2191" 
+            ry="2191" 
+            fill="url(#radialGradientHero)" 
+            stroke="#B1D0FF" 
+            strokeWidth="0.5"
+            clipPath="url(#cropClipHero)" 
+          />
+        </svg>
       </div>
+
+      {/* Services introduction text */}
+      <div className="absolute bottom-8 left-0 right-0 md:relative md:bottom-auto md:left-auto md:right-auto z-40 text-center px-4 max-w-2xl mx-auto md:mb-16" style={{ marginTop: '12rem' }}>
+        <p className="text-white text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2">Everything you need</p>
+        <p className="text-white text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto mt-2">
+          From branding and graphic design to social media, digital ads, and outdoor campaigns — we plan, design, and execute strategies that get you noticed. Set goals, assign tasks, and watch your brand grow — effortlessly.
+        </p>
+      </div>
+
     </section>
   );
 };
 
-// Background layers component
+// Background layers component - Extended to flow 50px into next section
 const BackgroundLayers = () => (
   <>
-    {/* Base background */}
-    <div className="absolute inset-0 bg-black" />
+    {/* Base background - Extended 50px below */}
+    <div className="absolute inset-0 bg-black" 
+         style={{ bottom: '-50px' }} />
     
-    {/* Main gradient background - full coverage */}
-    <div className="absolute inset-0 bg-[linear-gradient(180deg,_#000_0%,_#000_40%,_#0917A5_55%,_#1072FE_65%,_#1225B9_75%,_#000_98%)]" />
+    {/* Main gradient background - Extended 50px below with fade effect */}
+    <div className="absolute inset-0 bg-[linear-gradient(180deg,_#000_0%,_#000_40%,_#0917A5_55%,_#1072FE_65%,_#1225B9_75%,_#000_98%,_transparent_100%)]" 
+         style={{ bottom: '-50px' }} />
     
-    {/* Motion blur overlay */}
-    <div className="absolute inset-0 bg-black/5 backdrop-blur-[150px]" />
+    {/* Motion blur overlay - Extended 50px below */}
+    <div className="absolute inset-0 bg-black/5 backdrop-blur-[150px]" 
+         style={{ bottom: '-50px' }} />
   </>
 );
 
@@ -77,7 +112,8 @@ const DecorativeElements = () => (
     </div>
 
     {/* Left decorative star */}
-    <div className="absolute top-1/2 -translate-y-1/2 z-40"
+    {/* MODIFIED: Changed top-[45%] to top-[42%] to move the element further up. */}
+    <div className="absolute top-[42%] -translate-y-1/2 z-40"
          style={{
            left: 'clamp(-4rem, -8vw, -6rem)',
            transform: 'translateY(-50%)',

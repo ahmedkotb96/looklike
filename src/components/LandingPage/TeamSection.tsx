@@ -6,6 +6,30 @@ const TeamSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Add touch state for swipe
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+    if (isLeftSwipe) {
+      handleSlideChange('next');
+    } else if (isRightSwipe) {
+      handleSlideChange('prev');
+    }
+  };
+
   const teamMembers = [
     {
       id: 1,
@@ -157,9 +181,34 @@ const TeamSection = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-[47px] font-bold mb-6">
-            <span className="text-white">Meet Our</span><br />
-            <span className="bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] bg-clip-text text-transparent">Creative Team</span>
+          <h2
+            className="text-4xl md:text-5xl lg:text-[47px] font-bold mb-6"
+            style={{
+              fontFamily: 'Inter',
+              fontSize: '46.934px',
+              fontStyle: 'normal',
+              fontWeight: 600,
+              lineHeight: 'normal',
+            }}
+          >
+            <span className="text-white" style={{ fontFamily: 'Inter', fontSize: '46.934px', fontStyle: 'normal', fontWeight: 600, lineHeight: 'normal' }}>Meet Our</span><br />
+            <span
+              style={{
+                background: 'linear-gradient(267deg, #00F0FF 4.01%, #5200FF 57.55%, #FF2DF7 114.97%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                color: 'transparent',
+                fontFamily: 'Inter',
+                fontSize: '46.934px',
+                fontStyle: 'normal',
+                fontWeight: 600,
+                lineHeight: 'normal',
+              }}
+              className="bg-clip-text text-transparent"
+            >
+              Creative Team
+            </span>
           </h2>
         </div>
 
@@ -200,18 +249,23 @@ const TeamSection = () => {
 
         {/* Mobile: Single card carousel */}
         <div className="block md:hidden relative max-w-xs mx-auto">
-          <div className="flex justify-center mb-6 h-[400px] overflow-hidden">
+          <div
+            className="flex justify-center mb-6 h-[400px] overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div
-              key={`mobile-${teamMembers[currentSlide].id}`}
+              key={`mobile-${teamMembers[currentSlide % teamMembers.length].id}`}
               className={`w-full h-full relative transition-opacity duration-500 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
               style={{ animation: !isTransitioning ? `slideInUp 0.6s ease-out both` : 'none' }}
             >
-              <div className="absolute inset-0 bg-cover bg-center rounded-lg" style={{ backgroundImage: `url(${teamMembers[currentSlide].image})` }} />
-              {teamMembers[currentSlide].overlay && <div className="absolute inset-0 bg-cover bg-center rounded-lg" style={{ backgroundImage: `url(${teamMembers[currentSlide].overlay})` }} />}
+              <div className="absolute inset-0 bg-cover bg-center rounded-lg" style={{ backgroundImage: `url(${teamMembers[currentSlide % teamMembers.length].image})` }} />
+              {teamMembers[currentSlide % teamMembers.length].overlay && <div className="absolute inset-0 bg-cover bg-center rounded-lg" style={{ backgroundImage: `url(${teamMembers[currentSlide % teamMembers.length].overlay})` }} />}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg" />
               <div className="absolute bottom-8 left-8 right-8">
-                <h3 className="text-white text-lg font-semibold mb-1">{teamMembers[currentSlide].name}</h3>
-                <p className="text-gray-300 text-sm">{teamMembers[currentSlide].role}</p>
+                <h3 className="text-white text-lg font-semibold mb-1">{teamMembers[currentSlide % teamMembers.length].name}</h3>
+                <p className="text-gray-300 text-sm">{teamMembers[currentSlide % teamMembers.length].role}</p>
               </div>
             </div>
           </div>

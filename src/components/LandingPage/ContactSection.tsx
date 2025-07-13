@@ -23,18 +23,49 @@ const ContactSection = () => {
       <div className="container mx-auto px-4 relative z-10 md:px-4">
         <div className="text-center max-w-6xl mx-auto pb-10 md:pb-20">
           {/* Main Heading */}
-          <h2 className="text-4xl md:text-5xl lg:text-[65px] lg:leading-tight font-bold mb-6 md:mb-8">
+          <h2
+            className="text-4xl md:text-5xl lg:text-[65px] lg:leading-tight font-bold mb-6 md:mb-8"
+            style={{
+              textAlign: 'center',
+              fontFeatureSettings: "'liga' off, 'clig' off",
+              fontFamily: 'Inter',
+              fontSize: '64.844px',
+              fontStyle: 'normal',
+              fontWeight: 600,
+              lineHeight: 'normal',
+            }}
+          >
             <span className="text-white">Why Choose Us for</span>
             <br />
             <span className="text-white">Your </span>
-            <span className="bg-gradient-to-r from-[#142EF5] to-[#F41CCC] bg-clip-text text-transparent">
+            <span
+              style={{
+                background: 'linear-gradient(90deg, #142EF5 5.29%, #F41CCC 61.06%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                color: 'transparent',
+              }}
+              className="bg-clip-text text-transparent"
+            >
               Marketing
             </span>
             <span className="text-white"> Needs?</span>
           </h2>
 
           {/* Description */}
-          <p className="text-white text-lg md:text-xl lg:text-[25px] lg:leading-[38px] mb-8 md:mb-12 max-w-5xl mx-auto font-medium">
+          <p
+            className="text-white text-lg md:text-xl lg:text-[25px] lg:leading-[38px] mb-8 md:mb-12 max-w-5xl mx-auto font-medium"
+            style={{
+              textAlign: 'center',
+              fontFeatureSettings: "'liga' off, 'clig' off",
+              fontFamily: 'Inter',
+              fontSize: '25.237px',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              lineHeight: '150%',
+            }}
+          >
             At Looklike, we don't just market — we build success stories. With a
             mix of creativity, experience, and market insight, we craft powerful
             campaigns tailored to each brand. Our team is dedicated to

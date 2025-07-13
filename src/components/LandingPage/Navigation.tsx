@@ -63,14 +63,21 @@ const Navigation = () => {
             href="/"
             onClick={(e) => {
               e.preventDefault();
-              handleNavigate("/");
+              if (location.pathname === "/") {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              } else {
+                handleNavigate("/");
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 100);
+              }
             }}
             className="flex-shrink-0 focus:outline-none"
             aria-label="Go to home section"
           >
             <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/a08f03de9482231f373ce49cbf84244b8b6a4812"
-              alt="Look Like Logo"
+              src="/src/assets/Looklike_logo.png"
+              alt="Looklike Logo"
               className="h-12 w-auto cursor-pointer"
               loading="lazy"
               decoding="async"

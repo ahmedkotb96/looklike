@@ -11,10 +11,35 @@ const PortfolioSection = () => {
   const [currentProject, setCurrentProject] = useState(0);
   const navigate = useNavigate();
 
+  // Add touch state for swipe
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchEnd(null); // Reset touchEnd on new touch
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+    if (isLeftSwipe) {
+      nextProject();
+    } else if (isRightSwipe) {
+      prevProject();
+    }
+  };
+
   const projects = [
     {
       id: 1,
-      title: "iHome",
+      title: "ihome",
       description:
         "We crafted a modern and clean visual identity for i Home, reflecting the brand's focus on smart living and contemporary design.",
       image: ihomeBrandIdentity,
@@ -77,7 +102,9 @@ const PortfolioSection = () => {
             Last Work
           </h2>
           <p className="text-white text-lg">
-            Take a look at our latest projects where creativity meets strategy.
+            Take a look at our latest projects where creativity
+            <br />
+            meets strategy.
           </p>
         </div>
 
@@ -98,7 +125,14 @@ const PortfolioSection = () => {
           </button>
           
           {/* Card Container */}
-          <div className="w-full max-w-4xl mx-auto md:px-4">
+          {/* --- MODIFICATION START --- */}
+          <div
+            className="w-full max-w-4xl mx-auto md:px-4"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+          {/* --- MODIFICATION END --- */}
             <div className="relative h-auto md:h-[400px] rounded-[50px] overflow-hidden bg-white/10 backdrop-blur-[160px] border border-white/20">
               <div className="flex flex-col md:flex-row h-full">
                 {/* Image Section */}
@@ -120,7 +154,17 @@ const PortfolioSection = () => {
                         {projects[currentProject].title}
                       </h3>
                     </div>
-                    <p className="text-white text-base md:text-lg lg:text-xl lg:leading-7 font-medium text-justify">
+                    <p
+                      style={{
+                        color: '#FFF',
+                        fontFamily: 'Helvetica',
+                        fontSize: '25.421px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: '33.047px',
+                      }}
+                      className="text-white text-base md:text-lg lg:text-xl lg:leading-7 font-medium text-justify"
+                    >
                       {projects[currentProject].description}
                     </p>
                   </div>
@@ -144,10 +188,11 @@ const PortfolioSection = () => {
           </button>
         </div>
 
-        {/* --- MODIFICATION START --- */}
         {/* Mobile Navigation Controls: [Prev] [Dots] [Next] */}
         <div className="block md:hidden mt-8">
+          {/* --- MODIFICATION START --- */}
           <div className="flex justify-center items-center w-full max-w-sm mx-auto px-2 gap-4">
+          {/* --- MODIFICATION END --- */}
             <button onClick={prevProject} className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br from-[#1225B9] to-[#FF2DF7] transition-all duration-300 flex-shrink-0 group">
               <svg className="w-3 h-5 text-[#14142B] rotate-180 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 15 25"><path d="M0.913163 1.21105C1.22913 0.895084 1.6162 0.737101 2.07435 0.737101C2.53251 0.737101 2.91957 0.895084 3.23554 1.21105L13.2597 11.2589C13.5914 11.5907 13.7573 11.9738 13.7573 12.4082C13.7573 12.8427 13.5914 13.2258 13.2597 13.5576L3.23554 23.6054C2.91957 23.9214 2.53251 24.0793 2.07435 24.0793C1.6162 24.0793 1.22913 23.9214 0.913163 23.6054C0.597194 23.2894 0.439209 22.9063 0.439209 22.4561C0.439209 22.0058 0.597194 21.6227 0.913163 21.3067L9.7998 12.4201L0.913163 3.53343C0.597194 3.21746 0.439209 2.8304 0.439209 2.37224C0.439209 1.91409 0.597194 1.52702 0.913163 1.21105Z" /></svg>
             </button>
@@ -169,7 +214,6 @@ const PortfolioSection = () => {
             </button>
           </div>
         </div>
-        {/* --- MODIFICATION END --- */}
 
         {/* Desktop Dots Indicator */}
         <div className="hidden md:flex items-center justify-center mt-8 space-x-2">

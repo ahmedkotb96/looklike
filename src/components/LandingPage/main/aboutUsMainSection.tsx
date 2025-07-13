@@ -82,12 +82,30 @@ export default function Index() {
       <section className="relative z-10 max-w-7xl mx-auto px-5 py-16 pt-32">
         <div className="flex flex-col lg:flex-row items-center gap-8">
           <div className="flex-1 max-w-2xl">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black font-['DM_Sans'] leading-tight mb-6">
+            <h1
+              className="text-4xl md:text-6xl lg:text-7xl font-black font-['DM_Sans'] leading-tight mb-6"
+              style={{
+                fontFamily: '"DM Sans"',
+                fontSize: '72.995px',
+                fontStyle: 'normal',
+                fontWeight: 900,
+                lineHeight: '67.686px',
+              }}
+            >
               <span className="text-white">Innovative Ideas.</span>{" "}
               <span className="bg-[linear-gradient(90deg,_#1225B9_0%,_#DE19BA_100%)] bg-clip-text text-transparent">Outstanding</span>{" "}
               <span className="bg-[linear-gradient(90deg,_#1225B9_0%,_#DE19BA_100%)] bg-clip-text text-transparent">Results.</span>
             </h1>
-            <p className="text-white text-lg leading-relaxed mb-8 max-w-xl">
+            <p
+              className="text-white text-lg leading-relaxed mb-8 max-w-xl"
+              style={{
+                fontFamily: 'Inter',
+                fontSize: '17.093px',
+                fontStyle: 'normal',
+                fontWeight: 400,
+                lineHeight: '24.086px',
+              }}
+            >
               Welcome to Look Like Advertising & Marketing – your trusted
               partner for innovative and results-driven advertising solutions in
               the UAE. We specialize in crafting creative campaigns that don't
@@ -127,7 +145,19 @@ export default function Index() {
 
       {/* Trusted Companies */}
       <section className="relative z-10 max-w-7xl mx-auto px-5 py-16">
-        <h2 className="text-xl font-bold text-center text-white mb-10">
+        <h2
+          className="text-xl font-bold text-center text-white mb-10"
+          style={{
+            color: '#FFF',
+            textAlign: 'center',
+            fontFamily: 'Inter',
+            fontSize: '20.923px',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            lineHeight: '34px',
+            letterSpacing: '-0.002px',
+          }}
+        >
           Trusted by most innovative Companies
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4 md:px-16">
@@ -321,7 +351,18 @@ export default function Index() {
                 </span>
                 <span className="text-white"> Needs?</span>
               </h2>
-              <p className="text-white/80 text-lg leading-relaxed mb-8">
+              <p
+                className="text-white/80 text-lg leading-relaxed mb-8"
+                style={{
+                  color: '#FFF',
+                  fontFeatureSettings: "'liga' off, 'clig' off",
+                  fontFamily: 'Inter',
+                  fontSize: '16.058px',
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: '150%',
+                }}
+              >
                 At Looklike, we don't just market — we build success stories.
                 With a mix of creativity, experience, and market insight, we
                 craft powerful campaigns tailored to each brand. Our team is
@@ -332,13 +373,31 @@ export default function Index() {
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-pink-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <h3 className="text-xl font-medium text-white">
+                    <h3
+                      className="text-xl font-medium text-white"
+                      style={{
+                        fontFamily: 'Inter',
+                        fontSize: '19.508px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
                       Creative Expertise
                     </h3>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-pink-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <h3 className="text-xl font-medium text-white">
+                    <h3
+                      className="text-xl font-medium text-white"
+                      style={{
+                        fontFamily: 'Inter',
+                        fontSize: '19.508px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
                       Integrated Services
                     </h3>
                   </div>
@@ -346,13 +405,31 @@ export default function Index() {
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-pink-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <h3 className="text-xl font-medium text-white">
+                    <h3
+                      className="text-xl font-medium text-white"
+                      style={{
+                        fontFamily: 'Inter',
+                        fontSize: '19.508px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
                       Results-Driven
                     </h3>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-pink-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <h3 className="text-xl font-medium text-white">
+                    <h3
+                      className="text-xl font-medium text-white"
+                      style={{
+                        fontFamily: 'Inter',
+                        fontSize: '19.508px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
                       Centric Approach
                     </h3>
                   </div>

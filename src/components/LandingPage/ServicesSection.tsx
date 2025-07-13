@@ -207,19 +207,13 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="relative mt-0 sm:mb-16 sm:py-16 lg:py-24 overflow-hidden">
+    <section id="services" className="relative mt-0 sm:mb-16 sm:py-16 lg:py-24 overflow-visible z-40">
+      
       {/* Gradient Blob */}
       <div className="absolute top-32 right-0 w-[150px] h-[800px] pointer-events-none z-0">
         <img src={PinkVector} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
       </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Move Introductory Text above the section heading */}
-        <div className="text-center mb-16">
-          <p className="text-white text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Everything you need</p>
-          <p className="text-white text-base sm:text-lg md:text-xl max-w-2xl mx-auto mt-2">
-            From branding and graphic design to social media, digital ads, and outdoor campaigns — we plan, design, and execute strategies that get you noticed. Set goals, assign tasks, and watch your brand grow — effortlessly.
-          </p>
-        </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 lg:mb-8">
             Our Services
@@ -262,7 +256,17 @@ const ServicesSection = () => {
                             <h3 className="text-white text-xl font-bold leading-tight mb-3">
                               {service.title}
                             </h3>
-                            <p className="text-white text-sm leading-relaxed opacity-90 text-justify">
+                            <p className="text-white text-sm leading-relaxed opacity-90 text-justify"
+                              style={{
+                                color: '#FFF',
+                                fontFamily: 'Inter',
+                                fontSize: '8.476px',
+                                fontStyle: 'normal',
+                                fontWeight: 400,
+                                lineHeight: '12.108px',
+                                letterSpacing: '-0.001px',
+                              }}
+                            >
                               {service.description}
                             </p>
                           </div>
