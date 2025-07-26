@@ -113,9 +113,9 @@ const DecorativeElements = () => (
 
     {/* Left decorative star */}
     {/* MODIFIED: Changed top-[45%] to top-[42%] to move the element further up. */}
-    <div className="absolute top-[42%] -translate-y-1/2 z-40"
+    <div className="absolute top-[42%] -translate-y-1/2 z-20"
          style={{
-           left: 'clamp(-4rem, -8vw, -6rem)',
+           left: 'clamp(-8rem, -15vw, -12rem)',
            transform: 'translateY(-50%)',
          }}
          // Web/desktop: move up more
@@ -136,9 +136,9 @@ const DecorativeElements = () => (
     </div>
 
     {/* Right decorative visual */}
-    <div className="absolute top-[54%] -translate-y-1/2 z-40"
+    <div className="absolute top-[54%] -translate-y-1/2 z-20"
          style={{
-           right: 'clamp(-6rem, -8vw, -4rem)',
+           right: 'clamp(-8rem, -15vw, -10rem)',
            transform: 'translateY(-50%)',
          }}
          id="right-decorative-visual"

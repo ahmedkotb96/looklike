@@ -4,8 +4,68 @@ import GetInTouchButton from "@/components/ui/GetInTouchButton";
 import mediaProductionDecoration from "@/assets/decoration/media_production.webp";
 import ellipseReversed from "@/assets/ellipse_reversed.webp";
 import ContactSection from "@/components/LandingPage/ContactSection";
+import { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/firebase";
+
+// Interface for a single media item
+interface MediaItem {
+  id: string;
+  title: string;
+  mediaUrl: string;
+}
+
+// Function to convert a YouTube watch URL to an embed URL
+// This handles both standard watch URLs and shortened youtu.be URLs
+const getYouTubeEmbedUrl = (url: string): string => {
+  const regExp = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/]+\/.+\/(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\S+)?/;
+  const match = url.match(regExp);
+  if (match && match[1]) {
+    return `https://www.youtube.com/embed/${match[1]}`;
+  }
+  return url; // Return original URL if no match, or handle as error
+};
 
 export default function MediaProduction() {
+  // State to hold media items fetched from Firebase
+  const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
+
+  // Effect to fetch data from Firestore on component mount
+  useEffect(() => {
+    const fetchMediaItems = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "mediaProduction"));
+        const fetchedItems = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            title: data.title || "Looklike Production Video", // Fallback title
+            mediaUrl: data.mediaUrl,
+          };
+        });
+        setMediaItems(fetchedItems);
+      } catch (error) {
+        console.error("Error fetching media productions:", error);
+      }
+    };
+
+    fetchMediaItems();
+  }, []);
+
+  // Static items that are always present
+  const staticItems: MediaItem[] = [
+    {
+      id: "static-1",
+      title: "Looklike YouTube Video 1",
+      mediaUrl: "https://www.youtube.com/embed/gEhJqwWNhhQ",
+    },
+
+
+  ];
+
+  // Combine static items with items fetched from Firebase
+  const allItems = [...staticItems, ...mediaItems];
+
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Background blur effects */}
@@ -24,7 +84,7 @@ export default function MediaProduction() {
             fill="currentColor"
           />
         </svg>
-        
+
         {/* Top right blur */}
         <svg
           className="absolute right-0 top-80 w-[984px] h-[705px] text-pink-500 opacity-75"
@@ -82,104 +142,45 @@ export default function MediaProduction() {
             </div>
           </div>
         </section>
-        
+
         {/* === Video Showcase Section === */}
         <section className="relative z-40 max-w-7xl mx-auto px-5 pb-16 lg:pb-24">
           {/* Section Heading */}
           <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-black font-['DM_Sans'] leading-tight">
-                <span className="text-white">Our Work in </span>
-                <span className="bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] bg-clip-text text-transparent">
-                  Motion
-                </span>
-              </h2>
+            <h2 className="text-4xl md:text-5xl font-black font-['DM_Sans'] leading-tight">
+              <span className="text-white">Our Work in </span>
+              <span className="bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] bg-clip-text text-transparent">
+                Motion
+              </span>
+            </h2>
           </div>
 
-          {/* Video Grid */}
+          {/* Video Grid - Now dynamically rendered */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Video 1 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/gEhJqwWNhhQ"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Looklike YouTube Video"
-                loading="lazy"
-              ></iframe>
-            </div>
-
-            {/* Video 2 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/uiduCPhepwQ?si=Vl5uyWGem_I0ac0b"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Media Production Example 2"
-                loading="lazy"
-              ></iframe>
-            </div>
-
-            {/* Video 3 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/5EPlte9OEmI"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Looklike YouTube Video 3"
-                loading="lazy"
-              ></iframe>
-            </div>
-
-            {/* Video 4 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/2MZIunJGbU0"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Looklike YouTube Video 4"
-                loading="lazy"
-              ></iframe>
-            </div>
-
-            {/* Video 5 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/zXpX3aCrGLk"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Looklike YouTube Video 5"
-                loading="lazy"
-              ></iframe>
-            </div>
-            
-            {/* Video 6 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/4DUDdIVVqpY"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Looklike YouTube Video 6"
-                loading="lazy"
-              ></iframe>
-            </div>
+            {allItems.map((item) => (
+              <div
+                key={item.id}
+                className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]"
+              >
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src={getYouTubeEmbedUrl(item.mediaUrl)}
+                  style={{ border: "none" }}
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen={true}
+                  title={item.title}
+                  loading="lazy"
+                ></iframe>
+              </div>
+            ))}
           </div>
 
           {/* Description and Explore More */}
           <div className="text-center relative z-50 mt-16 sm:mt-20 md:mt-24">
             <p className="text-white font-inter text-lg sm:text-xl md:text-2xl lg:text-[24px] font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-[34px] max-w-full sm:max-w-[600px] md:max-w-[717px] mx-auto mb-6 sm:mb-8 px-4">
-              We bring stories to life with cinematic quality and creative passion. Every frame is crafted to captivate, engage, and deliver your message with impact. Explore more of our work in motion.
+              We bring stories to life with cinematic quality and creative
+              passion. Every frame is crafted to captivate, engage, and deliver
+              your message with impact. Explore more of our work in motion.
             </p>
 
             <button className="flex mx-auto px-4 sm:px-[15px] py-2 sm:py-[6px] justify-center items-center gap-2 sm:gap-[10px] rounded-[10px] border border-white/15 bg-gray-500/40 backdrop-blur-[7px] shadow-[0px_0px_6px_3px_rgba(255,255,255,0.25)_inset] hover:bg-gray-500/50 hover:scale-105 hover:shadow-xl transition-all duration-300 group">
@@ -206,7 +207,8 @@ export default function MediaProduction() {
 
         {/* Footer */}
         <Footer />
-      </div> {/* Close Content Container */}
+      </div>
+      {/* Close Content Container */}
     </div>
   );
 }

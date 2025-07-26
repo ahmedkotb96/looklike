@@ -11,25 +11,24 @@ const ServicesSection = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [transitioning, setTransitioning] = useState<number | null>(null);
+  const [expandedId, setExpandedId] = useState<number | null>(null);
 
   const services = [
     {
       id: 1,
       title: "Social Media Management",
       description:
-        "In the age of social media, we build your brand's presence across all major platforms. Our team creates and manages compelling content that engages your audience and drives results.",
+        "In the age of social media, we build your brand's presence across all major platforms. Our team creates and manages compelling content that engages your audience and drives results, focusing on strategies that convert followers into customers.",
       image:
         socialMediaManagmentImg,
-      width: "w-full md:w-[477px]",
     },
     {
       id: 2,
       title: "Branding Service",
       description:
-        "Your brand identity is what makes you stand out. We craft visual identities that capture the essence of your business and ensure consistency across all media.",
+        "Your brand identity is what makes you stand out. We craft visual identities that capture the essence of your business and ensure consistency across all media, from logo design and color palettes to typography and comprehensive brand guidelines.",
       image:
         brandingServicesImg,
-      width: "w-full md:w-[153px]",
     },
     {
       id: 3,
@@ -38,7 +37,6 @@ const ServicesSection = () => {
         "We bring your brand's story to life through high-quality media production. Whether it's a promotional video, professional photography, or eye-catching motion graphics, our production team delivers stunning visuals that captivate your audience.",
       image:
         mediaProductionImg,
-      width: "w-full md:w-[153px]",
     },
     {
       id: 4,
@@ -47,7 +45,6 @@ const ServicesSection = () => {
         "Make your brand impossible to ignore with our outdoor advertising solutions. From billboards and transit ads to street furniture and digital displays, we create impactful campaigns that reach your audience where they live, work, and play.",
       image:
         outdoorAdvertisingImg,
-      width: "w-full md:w-[153px]",
     },
   ];
 
@@ -57,6 +54,13 @@ const ServicesSection = () => {
     "Media Production": "/media-production",
     "Outdoor Advertising": "/outdoor-advertising",
   };
+
+  const handleToggleDescription = (e: React.MouseEvent, serviceId: number) => {
+    e.stopPropagation();
+    e.preventDefault(); 
+    setExpandedId(prevId => (prevId === serviceId ? null : serviceId));
+  };
+
 
   const nextSlide = useCallback(() => {
     if (isAnimating) return;
@@ -82,13 +86,14 @@ const ServicesSection = () => {
   // Auto-play functionality
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!isAnimating) {
+      // Pause autoplay if a description is expanded
+      if (!isAnimating && expandedId === null) {
         nextSlide();
       }
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [isAnimating, nextSlide]);
+  }, [isAnimating, nextSlide, expandedId]);
 
   // Touch handling for swipe gestures
   const [touchStart, setTouchStart] = useState(0);
@@ -118,22 +123,18 @@ const ServicesSection = () => {
 
   const getCardStyles = (index: number) => {
     if (hoveredCard === null) {
-      // Default state - first card is larger
       return index === 0 ? 'flex-[2] min-w-0' : 'flex-[1] min-w-0';
     } else {
-      // Hover state - hovered card expands, others shrink
       if (index === hoveredCard) {
-        return 'flex-[2] min-w-0'; // Reduced expansion - was 3.5
+        return 'flex-[2] min-w-0';
       } else {
-        return 'flex-[1] min-w-0'; // Less shrunk - was 0.4
+        return 'flex-[1] min-w-0';
       }
     }
   };
 
-  // Enhanced hover handlers with 3D transition effects
   const handleMouseEnter = (index: number) => {
     if (hoveredCard !== null && hoveredCard !== index) {
-      // Start transition effect on previous hovered card
       setTransitioning(hoveredCard);
       setTimeout(() => setTransitioning(null), 800);
     }
@@ -146,16 +147,15 @@ const ServicesSection = () => {
       setTimeout(() => setTransitioning(null), 800);
     }
     setHoveredCard(null);
+    setExpandedId(null); // Collapse description on mouse leave
   };
 
-  // Get transform styles for accordion card effect with consistent height
   const get3DTransform = (index: number) => {
     const isHovered = hoveredCard === index;
     const isTransitioning = transitioning === index;
     const isInactive = hoveredCard !== null && hoveredCard !== index;
 
     if (isTransitioning) {
-      // Accordion collapsing animation - horizontal only
       return {
         transform: 'perspective(1000px) scale(0.95)',
         transformOrigin: 'center center',
@@ -165,7 +165,6 @@ const ServicesSection = () => {
     }
 
     if (isHovered) {
-      // Accordion expanding - horizontal only with enhanced clarity
       return {
         transform: 'perspective(1000px) scale(1.02)',
         transformOrigin: 'center center',
@@ -175,7 +174,6 @@ const ServicesSection = () => {
     }
 
     if (isInactive) {
-      // Partially collapsed accordion cards - horizontal only
       return {
         transform: 'perspective(1000px) scale(0.95)',
         transformOrigin: 'center center',
@@ -184,24 +182,18 @@ const ServicesSection = () => {
       };
     }
 
-    // Default state - consistent height for all cards
     return {
-      transform: index === 0 
-        ? 'perspective(1000px) scale(1)' 
-        : 'perspective(1000px) scale(1)',
+      transform: 'perspective(1000px) scale(1)',
       transformOrigin: 'center center',
       opacity: '1',
       filter: 'brightness(1)',
     };
   };
 
-  // Get image filter styles for color/grayscale effect
   const getImageFilter = (index: number) => {
     if (hoveredCard === null) {
-      // Default state - first card is colored, others are grayscale
       return index === 0 ? 'grayscale(0)' : 'grayscale(100%)';
     } else {
-      // Hover state - hovered card is colored, others are grayscale
       return hoveredCard === index ? 'grayscale(0)' : 'grayscale(100%)';
     }
   };
@@ -209,7 +201,6 @@ const ServicesSection = () => {
   return (
     <section id="services" className="relative mt-0 sm:mb-16 sm:py-16 lg:py-24 overflow-visible z-40">
       
-      {/* Gradient Blob */}
       <div className="absolute top-32 right-0 w-[150px] h-[800px] pointer-events-none z-0">
         <img src={PinkVector} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
       </div>
@@ -235,6 +226,8 @@ const ServicesSection = () => {
               {services.map((service) => {
                 const path = routeMap[service.title];
                 const CardWrapper = path ? Link : 'div';
+                const isExpanded = expandedId === service.id;
+                const isLongDescription = service.description.length > 130;
 
                 return (
                   <CardWrapper
@@ -243,20 +236,18 @@ const ServicesSection = () => {
                     className="w-full flex-shrink-0 px-4"
                   >
                     <div className="relative h-[400px] rounded-[20px] overflow-hidden transform transition-all duration-300 hover:scale-105">
-                      {/* Background Image */}
                       <div
                         className="absolute inset-0 bg-cover bg-center"
                         style={{ backgroundImage: `url(${service.image})` }}
                       />
-
-                      {/* Content */}
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/70 to-transparent">
                         <div className="flex items-end justify-between gap-4">
                           <div className="flex-1">
                             <h3 className="text-white text-xl font-bold leading-tight mb-3">
                               {service.title}
                             </h3>
-                            <p className="text-white text-sm leading-relaxed opacity-90 text-justify"
+                            <p
+                              className={`text-white text-sm leading-relaxed opacity-90 text-justify ${!isExpanded && isLongDescription ? 'line-clamp-4' : ''}`}
                               style={{
                                 color: '#FFF',
                                 fontFamily: 'Inter',
@@ -269,9 +260,15 @@ const ServicesSection = () => {
                             >
                               {service.description}
                             </p>
+                             {isLongDescription && (
+                                <button
+                                  onClick={(e) => handleToggleDescription(e, service.id)}
+                                  className="text-blue-300 text-xs font-semibold mt-2 hover:underline z-50"
+                                >
+                                  {isExpanded ? 'See Less' : 'See More'}
+                                </button>
+                              )}
                           </div>
-
-                          {/* Arrow Icon */}  
                           <div className="flex-shrink-0 w-14 h-14 bg-gray-300 rounded-full flex items-center justify-center hover:bg-white transition-colors duration-300">
                             <svg
                               className="w-7 h-7 text-black"
@@ -290,20 +287,12 @@ const ServicesSection = () => {
             </div>
           </div>
 
-          {/* Navigation Controls */}
-          <div className="flex items-center justify-center mt-6 space-x-4 relative">
-            {/* Previous Button - match TeamSection style */}
-            <button
-              onClick={prevSlide}
-              disabled={isAnimating}
-              className="w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br from-[#1225B9] to-[#FF2DF7] transition-all duration-300 flex items-center justify-center disabled:opacity-50 group"
-            >
+          <div className="flex items-center justify-center mt-6 space-x-4">
+            <button onClick={prevSlide} disabled={isAnimating} className="w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br from-[#1225B9] to-[#FF2DF7] transition-all duration-300 flex items-center justify-center disabled:opacity-50 group">
               <svg className="w-3 h-5 text-[#14142B] rotate-180 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 15 25">
                 <path d="M0.913163 1.21105C1.22913 0.895084 1.6162 0.737101 2.07435 0.737101C2.53251 0.737101 2.91957 0.895084 3.23554 1.21105L13.2597 11.2589C13.5914 11.5907 13.7573 11.9738 13.7573 12.4082C13.7573 12.8427 13.5914 13.2258 13.2597 13.5576L3.23554 23.6054C2.91957 23.9214 2.53251 24.0793 2.07435 24.0793C1.6162 24.0793 1.22913 23.9214 0.913163 23.6054C0.597194 23.2894 0.439209 22.9063 0.439209 22.4561C0.439209 22.0058 0.597194 21.6227 0.913163 21.3067L9.7998 12.4201L0.913163 3.53343C0.597194 3.21746 0.439209 2.8304 0.439209 2.37224C0.439209 1.91409 0.597194 1.52702 0.913163 1.21105Z" />
               </svg>
             </button>
-
-            {/* Dots Indicator */}
             <div className="flex space-x-2">
               {services.map((_, index) => (
                 <button
@@ -311,20 +300,12 @@ const ServicesSection = () => {
                   onClick={() => goToSlide(index)}
                   disabled={isAnimating}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? 'bg-gradient-to-r from-[#1225B9] to-[#FF2DF7] shadow-lg'
-                      : 'bg-gray-400 hover:bg-gray-300'
+                    index === currentIndex ? 'bg-gradient-to-r from-[#1225B9] to-[#FF2DF7] shadow-lg' : 'bg-gray-400 hover:bg-gray-300'
                   }`}
                 />
               ))}
             </div>
-
-            {/* Next Button - match TeamSection style */}
-            <button
-              onClick={nextSlide}
-              disabled={isAnimating}
-              className="w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br from-[#1225B9] to-[#FF2DF7] transition-all duration-300 flex items-center justify-center disabled:opacity-50 group"
-            >
+            <button onClick={nextSlide} disabled={isAnimating} className="w-10 h-10 rounded-full bg-white shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gradient-to-br from-[#1225B9] to-[#FF2DF7] transition-all duration-300 flex items-center justify-center disabled:opacity-50 group">
               <svg className="w-3 h-5 text-[#14142B] group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 15 25">
                 <path d="M0.913163 1.21105C1.22913 0.895084 1.6162 0.737101 2.07435 0.737101C2.53251 0.737101 2.91957 0.895084 3.23554 1.21105L13.2597 11.2589C13.5914 11.5907 13.7573 11.9738 13.7573 12.4082C13.7573 12.8427 13.5914 13.2258 13.2597 13.5576L3.23554 23.6054C2.91957 23.9214 2.53251 24.0793 2.07435 24.0793C1.6162 24.0793 1.22913 23.9214 0.913163 23.6054C0.597194 23.2894 0.439209 22.9063 0.439209 22.4561C0.439209 22.0058 0.597194 21.6227 0.913163 21.3067L9.7998 12.4201L0.913163 3.53343C0.597194 3.21746 0.439209 2.8304 0.439209 2.37224C0.439209 1.91409 0.597194 1.52702 0.913163 1.21105Z" />
               </svg>
@@ -332,7 +313,7 @@ const ServicesSection = () => {
           </div>
         </div>
 
-        {/* Desktop Layout with 3D Door Animation - Hidden on mobile */}
+        {/* Desktop Layout */}
         <div
           className="hidden sm:flex sm:gap-4 lg:gap-6 xl:gap-8 justify-center items-stretch max-w-5xl mx-auto"
           style={{ perspective: '1200px' }}
@@ -340,6 +321,9 @@ const ServicesSection = () => {
           {services.map((service, index) => {
             const path = routeMap[service.title];
             const CardComponent = path ? Link : 'div';
+            const isHovered = hoveredCard === index;
+            const isExpanded = expandedId === service.id;
+            const isLongDescription = service.description.length > 180;
 
             return (
               <CardComponent
@@ -355,89 +339,83 @@ const ServicesSection = () => {
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
               >
-                {/* 3D Card Container */}
                 <div
                   className="relative rounded-[16px] sm:rounded-[20px] lg:rounded-[24px] overflow-hidden h-[350px] sm:h-[380px] lg:h-[420px] transition-all duration-[1000ms] ease-out"
                   style={{
                     transformStyle: 'preserve-3d',
                     boxShadow:
-                      hoveredCard === index
+                      isHovered
                         ? '0px 20px 100px 20px rgba(18, 37, 185, 0.4), 0px 0px 50px 10px rgba(244, 28, 204, 0.2)'
                         : 'none',
                   }}
                 >
-                  {/* Background Image with horizontal accordion effect and color/grayscale filter */}
                   <div
                     className="absolute inset-0 bg-cover bg-center bg-gray-500 transition-all duration-[1000ms] ease-out"
                     style={{
                       backgroundImage: `url(${service.image})`,
-                      transform: hoveredCard === index ? 'scale(1.05)' :
+                      transform: isHovered ? 'scale(1.05)' :
                                 transitioning === index ? 'scale(0.95)' :
-                                hoveredCard !== null && hoveredCard !== index ? 'scale(0.98)' :
-                                index === 0 ? 'scale(1.02)' : 'scale(1)',
+                                hoveredCard !== null && !isHovered ? 'scale(0.98)' :
+                                'scale(1)',
                       filter: getImageFilter(index),
                     }}
                   />
-                  {/* Content with horizontal accordion positioning */}
                   <div
-                    className="absolute left-0 right-0 transition-all duration-[1000ms] ease-out"
-                    style={{
-                      top: 'auto', // Consistent positioning for all cards
-                      bottom: '0',
-                      padding: hoveredCard === index ? '32px' :
-                              transitioning === index ? '12px' :
-                              hoveredCard !== null && hoveredCard !== index ? '16px' : '24px',
-                      // No vertical movement, maintaining consistent height
-                      transform: 'translateY(0px)',
-                    }}
+                    className="absolute left-0 right-0 p-8 flex flex-col justify-end inset-0"
                   >
-                    <div
-                      className="relative flex justify-between gap-3 sm:gap-4 items-end h-full"
-                    >
+                    <div className="relative flex justify-between gap-3 sm:gap-4 items-end h-full">
                       <div className="flex-1 min-w-0">
                         <h3
                           className="text-white font-bold leading-tight mb-2 transition-all duration-[1000ms] ease-out truncate"
                           style={{
-                            fontSize: hoveredCard === index ? '18px' :
+                            fontSize: isHovered ? '18px' :
                                      transitioning === index ? '14px' :
-                                     hoveredCard !== null && hoveredCard !== index ? '16px' : '18px',
-                            opacity: (hoveredCard === index || (hoveredCard === null && index === 0)) ? 1 : 0,
-                            // No vertical movement, maintaining consistent height
-                            transform: 'translateY(0px)',
+                                     hoveredCard !== null && !isHovered ? '16px' : '18px',
+                            opacity: (isHovered || (hoveredCard === null && index === 0)) ? 1 : 0,
                           }}
                         >
                           {service.title}
                         </h3>
-                        <p
-                          className="text-white leading-tight transition-all duration-[1000ms] ease-out"
+                        <div
+                          className="transition-all duration-[1000ms] ease-out"
                           style={{
-                            fontSize: hoveredCard === index ? '13px' :
-                                     transitioning === index ? '12px' :
-                                     hoveredCard !== null && hoveredCard !== index ? '12px' : '13px',
-                            opacity: (hoveredCard === index || (hoveredCard === null && index === 0)) ? 1 : 0,
-                            maxHeight: hoveredCard === index ? '40rem' : (hoveredCard === null && index === 0 ? '5rem' : '0'),
-                            overflow: 'hidden',
-                            // No vertical movement, maintaining consistent height
-                            transform: 'translateY(0px)',
-                            textAlign: 'justify',
+                              opacity: (isHovered || (hoveredCard === null && index === 0)) ? 1 : 0,
+                              maxHeight: (isHovered || (hoveredCard === null && index === 0)) ? '40rem' : '0',
+                              overflow: 'hidden',
                           }}
                         >
-                          {service.description}
-                        </p>
+                          <p
+                            className={`text-white leading-tight transition-all duration-[1000ms] ease-out ${!isExpanded && isLongDescription ? 'line-clamp-4' : ''}`}
+                            style={{
+                              fontSize: isHovered ? '13px' :
+                                      transitioning === index ? '12px' :
+                                      hoveredCard !== null && !isHovered ? '12px' : '13px',
+                              textAlign: 'justify',
+                            }}
+                          >
+                            {service.description}
+                          </p>
+                          {isLongDescription && (
+                            <button
+                              onClick={(e) => handleToggleDescription(e, service.id)}
+                              className="text-blue-300 text-sm font-semibold mt-2 hover:underline z-50"
+                            >
+                              {isExpanded ? 'See Less' : 'See More'}
+                            </button>
+                          )}
+                        </div>
                       </div>
 
-                      {/* Arrow Icon with horizontal accordion animation */}
                       <div
                         className="flex-shrink-0 bg-gray-300 rounded-full flex items-center justify-center group-hover:bg-white transition-all duration-[1000ms] ease-out"
                         style={{
-                          width: hoveredCard === index ? '60px' :
+                          width: isHovered ? '60px' :
                                  transitioning === index ? '28px' :
-                                 hoveredCard !== null && hoveredCard !== index ? '32px' : '48px',
-                          height: hoveredCard === index ? '60px' :
+                                 hoveredCard !== null && !isHovered ? '32px' : '48px',
+                          height: isHovered ? '60px' :
                                   transitioning === index ? '28px' :
-                                  hoveredCard !== null && hoveredCard !== index ? '32px' : '48px',
-                          // No vertical movement, only scale changes
-                          transform: hoveredCard === index
+                                  hoveredCard !== null && !isHovered ? '32px' : '48px',
+                          transform: isHovered
                                     ? 'scale(1.1)'
                                     : transitioning === index
                                     ? 'scale(0.7)'
@@ -450,14 +428,13 @@ const ServicesSection = () => {
                         <svg
                           className="text-black transition-all duration-[1000ms] ease-out"
                           style={{
-                            width: hoveredCard === index ? '32px' :
+                            width: isHovered ? '32px' :
                                    transitioning === index ? '16px' :
-                                   hoveredCard !== null && hoveredCard !== index ? '20px' : '24px',
-                            height: hoveredCard === index ? '32px' :
+                                   hoveredCard !== null && !isHovered ? '20px' : '24px',
+                            height: isHovered ? '32px' :
                                     transitioning === index ? '16px' :
-                                    hoveredCard !== null && hoveredCard !== index ? '20px' : '24px',
-                            // Point right when hovered, -45 degrees (top-right) by default
-                            transform: hoveredCard === index ? 'rotate(0deg)' : 
+                                    hoveredCard !== null && !isHovered ? '20px' : '24px',
+                            transform: isHovered ? 'rotate(0deg)' : 
                                       transitioning === index ? 'rotate(-20deg)' : 
                                       'rotate(-45deg)',
                             transformOrigin: 'center',

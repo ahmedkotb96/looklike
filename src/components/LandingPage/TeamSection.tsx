@@ -1,14 +1,35 @@
 import { useState, useEffect, useCallback } from "react";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "@/firebase";
 import bottomVector from "@/assets/bottomRightTeamVector.webp";
 import homeBottomRight from "@/assets/decoration/home_bottom_right.webp";
 
 const TeamSection = () => {
+  const [teamMembers, setTeamMembers] = useState<Array<{ id: string; name: string; role: string; image: string; overlay?: string }>>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-
-  // Add touch state for swipe
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      const snapshot = await getDocs(collection(db, "teamMembers"));
+      setTeamMembers(
+        snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: data.name || "",
+            role: data.role || "",
+            image: data.image || "",
+            overlay: data.overlay || undefined,
+            order: data.order || 0, // Ensure order is included
+          };
+        }).sort((a, b) => a.order - b.order) // Sort by order
+      );
+    };
+    fetchTeamMembers();
+  }, []);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStart(e.targetTouches[0].clientX);
@@ -29,97 +50,7 @@ const TeamSection = () => {
       handleSlideChange('prev');
     }
   };
-
-  const teamMembers = [
-    {
-      id: 1,
-      name: "Hassan Edrees",
-      role: "Ceo & Founder",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/576e7c0b0283afbfa317a844ee0811899d25d736",
-      overlay:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/32ae49fcdfe1d9046e59961e283ad55fefdbaf4e",
-    },
-    {
-      id: 2,
-      name: "Ahmed Hamada",
-      role: "General Manager",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/67c404be428d97e3f815531dae4ebe5738b3b7dc",
-    },
-    {
-      id: 3,
-      name: "Muaaz Negm",
-      role: "Graphic Designer",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/230c1561be57e20ee3576f8154103af5702f2616",
-      overlay:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/0615ff0641a2e09af20ea0b1ba57d7322d7cf2f8",
-    },
-    {
-      id: 4,
-      name: "Amal Elgizawy",
-      role: "Customer Services",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/67c404be428d97e3f815531dae4ebe5738b3b7dc",
-    },
-    {
-      id: 5,
-      name: "Omar Allam",
-      role: "Video Editor",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/67c404be428d97e3f815531dae4ebe5738b3b7dc",
-    },
-    {
-      id: 6,
-      name: "Rawan Dorgham",
-      role: "Moderator",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/67c404be428d97e3f815531dae4ebe5738b3b7dc",
-    },
-    {
-      id: 7,
-      name: "Abdelrahman Jackie",
-      role: "Graphic Designer",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/67c404be428d97e3f815531dae4ebe5738b3b7dc",
-    },
-    {
-      id: 8,
-      name: "Nagwa Salah",
-      role: "Account Manager",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/67c404be428d97e3f815531dae4ebe5738b3b7dc",
-    },
-    {
-      id: 9,
-      name: "Abd Elrahman Adel",
-      role: "Reel Maker",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/67c404be428d97e3f815531dae4ebe5738b3b7dc",
-    },
-    {
-      id: 10,
-      name: "Seif El Deen",
-      role: "Videographer",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/67c404be428d97e3f815531dae4ebe5738b3b7dc",
-    },
-    {
-      id: 11,
-      name: "Shehab Madkour",
-      role: "Content Creator",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/67c404be428d97e3f815531dae4ebe5738b3b7dc",
-    },
-    {
-      id: 12,
-      name: "3am Hamada",
-      role: "Taxi Driver",
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/67c404be428d97e3f815531dae4ebe5738b3b7dc",
-    },
-  ];
+  // ...existing code...
 
   const slidesPerView = {
     mobile: 1,
@@ -221,8 +152,10 @@ const TeamSection = () => {
           >
             <svg className="w-3 h-5 text-[#14142B] rotate-180 group-hover:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 15 25"><path d="M0.913163 1.21105C1.22913 0.895084 1.6162 0.737101 2.07435 0.737101C2.53251 0.737101 2.91957 0.895084 3.23554 1.21105L13.2597 11.2589C13.5914 11.5907 13.7573 11.9738 13.7573 12.4082C13.7573 12.8427 13.5914 13.2258 13.2597 13.5576L3.23554 23.6054C2.91957 23.9214 2.53251 24.0793 2.07435 24.0793C1.6162 24.0793 1.22913 23.9214 0.913163 23.6054C0.597194 23.2894 0.439209 22.9063 0.439209 22.4561C0.439209 22.0058 0.597194 21.6227 0.913163 21.3067L9.7998 12.4201L0.913163 3.53343C0.597194 3.21746 0.439209 2.8304 0.439209 2.37224C0.439209 1.91409 0.597194 1.52702 0.913163 1.21105Z" /></svg>
           </button>
-          <div className="flex gap-4 justify-center items-center overflow-hidden w-full max-w-4xl mx-auto relative h-[450px]">
-            {teamMembers.slice(currentSlide, currentSlide + slidesPerView.desktop).map((member, index) => (
+        <div className="flex gap-4 justify-center items-center overflow-hidden w-full max-w-4xl mx-auto relative h-[450px]">
+          {teamMembers.length > 0 && teamMembers.slice(currentSlide, currentSlide + slidesPerView.desktop).map((member, index) => {
+            if (!member) return null;
+            return (
               <div
                 key={`${member.id}-${currentSlide}`}
                 className={`w-full md:w-1/3 h-[450px] relative flex-shrink-0 transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
@@ -236,8 +169,9 @@ const TeamSection = () => {
                   <p className="text-gray-300 text-sm">{member.role}</p>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
+        </div>
           <button
             onClick={() => handleSlideChange('next')}
             disabled={isTransitioning}
@@ -255,19 +189,21 @@ const TeamSection = () => {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <div
-              key={`mobile-${teamMembers[currentSlide % teamMembers.length].id}`}
-              className={`w-full h-full relative transition-opacity duration-500 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
-              style={{ animation: !isTransitioning ? `slideInUp 0.6s ease-out both` : 'none' }}
-            >
-              <div className="absolute inset-0 bg-cover bg-center rounded-lg" style={{ backgroundImage: `url(${teamMembers[currentSlide % teamMembers.length].image})` }} />
-              {teamMembers[currentSlide % teamMembers.length].overlay && <div className="absolute inset-0 bg-cover bg-center rounded-lg" style={{ backgroundImage: `url(${teamMembers[currentSlide % teamMembers.length].overlay})` }} />}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg" />
-              <div className="absolute bottom-8 left-8 right-8">
-                <h3 className="text-white text-lg font-semibold mb-1">{teamMembers[currentSlide % teamMembers.length].name}</h3>
-                <p className="text-gray-300 text-sm">{teamMembers[currentSlide % teamMembers.length].role}</p>
+            {teamMembers.length > 0 && teamMembers[currentSlide % teamMembers.length] && (
+              <div
+                key={`mobile-${teamMembers[currentSlide % teamMembers.length].id}`}
+                className={`w-full h-full relative transition-opacity duration-500 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                style={{ animation: !isTransitioning ? `slideInUp 0.6s ease-out both` : 'none' }}
+              >
+                <div className="absolute inset-0 bg-cover bg-center rounded-lg" style={{ backgroundImage: `url(${teamMembers[currentSlide % teamMembers.length].image})` }} />
+                {teamMembers[currentSlide % teamMembers.length].overlay && <div className="absolute inset-0 bg-cover bg-center rounded-lg" style={{ backgroundImage: `url(${teamMembers[currentSlide % teamMembers.length].overlay})` }} />}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-lg" />
+                <div className="absolute bottom-8 left-8 right-8">
+                  <h3 className="text-white text-lg font-semibold mb-1">{teamMembers[currentSlide % teamMembers.length].name}</h3>
+                  <p className="text-gray-300 text-sm">{teamMembers[currentSlide % teamMembers.length].role}</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
           {/* Mobile Navigation Controls: [Prev] ...Dots... [Next] */}
           <div className="flex justify-between items-center w-full max-w-sm mx-auto px-2">

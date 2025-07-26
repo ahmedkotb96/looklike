@@ -148,32 +148,30 @@ const TrustedCompaniesSection = () => {
         <img src={blueLeftVectorTrustedSection} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
       </div>
 
-
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 max-w-4xl mx-auto md:px-4">
           <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold mb-12">
             Trusted by most innovative Companies
           </h2>
+        </div>
+      </div>
 
-          {/* Fixed Infinite Marquee */}
-          <div className="relative overflow-hidden w-full py-8">
-            <style>{marqueeStyles}</style>
-            
-            <div className="marquee-container">
-              <div className="marquee">
-                <div className="marquee-inner">
-                  {/* Repeat the companies array 10 times for a longer ribbon */}
-                  {Array.from({ length: 10 }, (_, setIndex) => 
-                    companies.map((company) => (
-                      <CompanyItem 
-                        key={`set-${setIndex}-${company.id}`}
-                        logo={company.logo}
-                        alt={company.alt}
-                      />
-                    ))
-                  )}
-                </div>
-              </div>
+      {/* Fixed Infinite Marquee - full width outside container */}
+      <div className="relative overflow-hidden w-screen left-1/2 right-1/2 -translate-x-1/2 py-8" style={{ position: 'relative' }}>
+        <style>{marqueeStyles}</style>
+        <div className="marquee-container">
+          <div className="marquee">
+            <div className="marquee-inner">
+              {/* Repeat the companies array 10 times for a longer ribbon */}
+              {Array.from({ length: 10 }, (_, setIndex) => 
+                companies.map((company) => (
+                  <CompanyItem 
+                    key={`set-${setIndex}-${company.id}`}
+                    logo={company.logo}
+                    alt={company.alt}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>

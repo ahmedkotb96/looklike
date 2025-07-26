@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import outdoorAdvertisingDecoration from "@/assets/decoration/Outdoor_Advertising.webp";
 import ellipseReversed from "@/assets/ellipse_reversed.webp";
 import ContactSection from "@/components/LandingPage/ContactSection";
+import { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/firebase";
 
 const RightPinkBlur = () => (
     <svg
@@ -28,7 +31,48 @@ const RightPinkBlur = () => (
     </svg>
 );
 
+// Interface for a single media item
+interface OutdoorAdvertisingItem {
+  id: string;
+  name: string;
+  description: string;
+  mediaUrl: string;
+}
+
+// Function to convert a YouTube watch URL to an embed URL
+const getYouTubeEmbedUrl = (url: string): string => {
+  const regExp = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/]+\/.+\/(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\S+)?/;
+  const match = url.match(regExp);
+  if (match && match[1]) {
+    return `https://www.youtube.com/embed/${match[1]}`;
+  }
+  return url;
+};
+
 export default function OutdoorAdvertising() {
+  const [outdoorAdvertisingItems, setOutdoorAdvertisingItems] = useState<OutdoorAdvertisingItem[]>([]);
+
+  useEffect(() => {
+    const fetchOutdoorAdvertisingItems = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "outdoorAdvertising"));
+        const fetchedItems = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: data.name || "Outdoor Advertising Video",
+            description: data.description || "",
+            mediaUrl: data.mediaUrl,
+          };
+        });
+        setOutdoorAdvertisingItems(fetchedItems);
+      } catch (error) {
+        console.error("Error fetching outdoor advertising items:", error);
+      }
+    };
+    fetchOutdoorAdvertisingItems();
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white font-inter relative overflow-hidden">
       {/* Background decorative elements */}
@@ -41,15 +85,12 @@ export default function OutdoorAdvertising() {
             filter: "blur(75px)",
           }}
         />
-
         {/* Top right blur */}
         <RightPinkBlur />
       </div>
-
       {/* Content Container */}
       <div className="relative z-10">
         <Navigation />
-
         {/* Hero Section */}
         <section className="relative z-10 flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 md:px-8 lg:px-8 py-16 sm:py-20 md:py-28 pb-8 sm:pb-12 md:pb-16 max-w-7xl mx-auto">
           <div className="flex flex-col items-start gap-4 max-w-full lg:max-w-[612px] mb-8 lg:mb-0">
@@ -86,7 +127,6 @@ export default function OutdoorAdvertising() {
             />
           </div>
         </section>
-
         {/* === Video Showcase Section === */}
         <section className="relative z-40 max-w-7xl mx-auto px-5 pb-16 lg:pb-24">
           {/* Section Heading */}
@@ -98,94 +138,30 @@ export default function OutdoorAdvertising() {
                 </span>
               </h2>
           </div>
-
-          {/* Video Grid */}
+          {/* Video Grid - Now dynamically rendered */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Video 1 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/gEhJqwWNhhQ"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Looklike YouTube Video"
-                loading="lazy"
-              ></iframe>
-            </div>
-
-            {/* Video 2 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/uiduCPhepwQ?si=Vl5uyWGem_I0ac0b"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Media Production Example 2"
-                loading="lazy"
-              ></iframe>
-            </div>
-
-            {/* Video 3 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/5EPlte9OEmI"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Looklike YouTube Video 3"
-                loading="lazy"
-              ></iframe>
-            </div>
-
-            {/* Video 4 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/2MZIunJGbU0"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Looklike YouTube Video 4"
-                loading="lazy"
-              ></iframe>
-            </div>
-
-            {/* Video 5 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/zXpX3aCrGLk"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Looklike YouTube Video 5"
-                loading="lazy"
-              ></iframe>
-            </div>
-            
-            {/* Video 6 Slot */}
-            <div className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/4DUDdIVVqpY"
-                style={{ border: 'none' }}
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                allowFullScreen={true}
-                title="Looklike YouTube Video 6"
-                loading="lazy"
-              ></iframe>
-            </div>
+            {outdoorAdvertisingItems.map((item) => (
+              <div
+                key={item.id}
+                className="relative pt-[56.25%] bg-black/20 rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-[10px]"
+              >
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src={getYouTubeEmbedUrl(item.mediaUrl)}
+                  style={{ border: "none" }}
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen={true}
+                  title={item.name}
+                  loading="lazy"
+                ></iframe>
+              </div>
+            ))}
           </div>
-
           {/* Description and Explore More */}
           <div className="text-center relative z-50 mt-16 sm:mt-20 md:mt-24">
             <p className="text-white font-inter text-lg sm:text-xl md:text-2xl lg:text-[24px] font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-[34px] max-w-full sm:max-w-[600px] md:max-w-[717px] mx-auto mb-6 sm:mb-8 px-4">
               Our strategic placement and creative designs ensure maximum visibility. See how we bring brands to the forefront with high-impact outdoor campaigns.
             </p>
-
             <button className="flex mx-auto px-4 sm:px-[15px] py-2 sm:py-[6px] justify-center items-center gap-2 sm:gap-[10px] rounded-[10px] border border-white/15 bg-gray-500/40 backdrop-blur-[7px] shadow-[0px_0px_6px_3px_rgba(255,255,255,0.25)_inset] hover:bg-gray-500/50 hover:scale-105 hover:shadow-xl transition-all duration-300 group">
               <span className="text-white font-inter text-sm sm:text-[14px] font-normal leading-[26px] tracking-[-0.001px] group-hover:text-white/95 transition-colors duration-300">
                 Explore More
@@ -193,7 +169,6 @@ export default function OutdoorAdvertising() {
             </button>
           </div>
         </section>
-
         {/* ellipse reversed image as overlay */}
         <div className="w-full flex justify-center relative z-30 -translate-y-16 md:-translate-y-56 pointer-events-none">
           <img
@@ -204,10 +179,8 @@ export default function OutdoorAdvertising() {
             decoding="async"
           />
         </div>
-
         {/* Contact Section */}
         <ContactSection />
-
         {/* Footer */}
         <Footer />
       </div> {/* Close Content Container */}

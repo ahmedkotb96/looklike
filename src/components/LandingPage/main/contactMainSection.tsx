@@ -1,5 +1,5 @@
 import Navigation from "@/components/LandingPage/Navigation";
-import Footer from "@/components/LandingPage/Footer";
+
 import { Button } from "@/components/ui/button";
 import bottomEclipse from "@/assets/ellipse_bottom.webp";
 
@@ -9,7 +9,7 @@ const ContactSection = () => {
       <Navigation />
       <section
         id="contact"
-        className="relative py-8 pt-72 pb-32 mb-36 max-h-[70vh] md:py-0 md:pt-20 md:pb-[130px] md:max-h-none bg-black md:min-h-screen flex items-center overflow-hidden"
+        className="relative py-8 pt-72 pb-48 mb-48 max-h-[70vh] md:py-0 md:pt-20 md:pb-[200px] md:max-h-none bg-black md:min-h-screen flex items-center overflow-hidden"
       >
         {/* Background gradient */}
         <div
@@ -71,7 +71,7 @@ const ContactSection = () => {
           </div>
         </div>
       </section>
-      <Footer />
+
     </div>
   );
 };

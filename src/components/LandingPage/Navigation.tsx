@@ -105,12 +105,14 @@ const Navigation = () => {
             >
               About Us
             </a>
-            {/* Services dropdown - HOVER FIXED */}
+            
+            {/* START: Centered "Solid Glass" Submenu */}
             <div
               className="relative services-dropdown"
               onMouseEnter={() => setServicesDropdownOpen(true)}
               onMouseLeave={() => setServicesDropdownOpen(false)}
             >
+              {/* Trigger Link */}
               <div
                 className={`flex items-center text-white text-base hover:text-blue-300 transition-colors cursor-pointer ${
                   isServicesActive ? "font-bold" : ""
@@ -120,31 +122,30 @@ const Navigation = () => {
                 <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
               </div>
 
-              {/* FIX: Wrapper for positioning/transition to bridge the gap */}
+              {/* Animated Container - Now perfectly centered */}
               <div
-                className={`absolute left-0 top-full w-64 pt-2 z-50 transition-all duration-300 origin-top ${servicesDropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+                className={`absolute left-1/2 -translate-x-1/2 top-full w-64 pt-2 z-50 transition-all duration-300 origin-top
+                  ${servicesDropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
               >
-                {/* The styled dropdown panel */}
-                <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] backdrop-blur-xl border border-white/10 shadow-lg">
-                  <div className="relative py-2">
-                    {serviceItems.map((item, index) => (
+                {/* The "Solid Glass" Panel */}
+                <div className="overflow-hidden rounded-2xl border border-white/20 shadow-2xl bg-gradient-to-b from-gray-900/90 to-black/80 backdrop-blur-sm">
+                  <div className="py-2">
+                    {serviceItems.map((item) => (
                       <a
-                        key={index}
+                        key={item.path}
                         href={item.path}
-                        className={`group block px-4 py-3 text-white/90 hover:bg-white/10 transition-all duration-300 ${location.pathname === item.path ? 'text-blue-300 font-medium' : 'font-normal'}`}
+                        // Font size reduced to text-sm for a more compact look
+                        className={`group block px-4 py-3 text-sm text-white/90 hover:bg-white/10 transition-colors duration-200 ${
+                          location.pathname === item.path ? 'text-blue-300 font-medium bg-white/10' : 'font-normal'
+                        }`}
                         onClick={(e) => {
                           e.preventDefault();
                           handleNavigate(item.path);
                         }}
-                        style={{
-                          opacity: servicesDropdownOpen ? 1 : 0,
-                          transition: 'opacity 300ms ease',
-                          transitionDelay: `${index * 40}ms`,
-                        }}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="group-hover:text-blue-300 transition-colors duration-300">{item.title}</span>
-                          <div className="w-2 h-2 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110"></div>
+                          <span className="group-hover:text-blue-300 transition-colors duration-200">{item.title}</span>
+                          <div className="w-2 h-2 rounded-full bg-blue-400 opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:scale-110"></div>
                         </div>
                       </a>
                     ))}
@@ -152,6 +153,8 @@ const Navigation = () => {
                 </div>
               </div>
             </div>
+            {/* END: Centered "Solid Glass" Submenu */}
+
             <a
               href="https://www.behance.net/Looklikeadd544"
               target="_blank"

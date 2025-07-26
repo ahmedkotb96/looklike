@@ -4,7 +4,7 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative py-8 pt-16 pb-32 max-h-[70vh] md:py-0 md:pt-0 md:pb-[130px] md:max-h-none bg-black md:min-h-screen flex items-center overflow-hidden md:pb-64"
+      className="relative py-16 pt-20 pb-20 min-h-[80vh] md:py-0 md:pt-0 md:pb-[130px] md:max-h-none bg-black md:min-h-screen flex items-center overflow-hidden md:pb-64"
     >
       {/* Background gradient */}
       <div
@@ -16,7 +16,7 @@ const ContactSection = () => {
           width="100%" 
           height="133" 
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute left-0 bottom-[-100px] md:bottom-[-150px] lg:bottom-[-100px] xl:bottom-[-80px] 2xl:bottom-[-60px] w-full h-[225px] md:h-[200px] lg:h-[250px] xl:h-[300px] 2xl:h-[350px] z-10 overflow-hidden md:mb-4"
+          className="absolute left-0 bottom-[-100px] md:bottom-[-290px] lg:bottom-[-250px] xl:bottom-[-230px] 2xl:bottom-[-210px] w-full h-[225px] md:h-[200px] lg:h-[250px] xl:h-[300px] 2xl:h-[350px] z-10 overflow-hidden md:mb-32"
           preserveAspectRatio="xMidYMid slice"
           viewBox="0 0 800 133"
         >
@@ -44,16 +44,16 @@ const ContactSection = () => {
         </svg>
       </div>
       
-      <div className="container mx-auto px-4 relative z-10 md:px-4">
-        <div className="text-center max-w-6xl mx-auto pb-10 md:pb-20">
+      <div className="container mx-auto px-6 relative z-10 md:px-4">
+        <div className="text-center max-w-6xl mx-auto pb-12 md:pb-20">
           {/* Main Heading */}
           <h2
-            className="text-4xl md:text-5xl lg:text-[65px] lg:leading-tight font-bold mb-6 md:mb-8"
+            className="text-[32px] leading-tight md:text-5xl lg:text-[65px] lg:leading-tight font-semibold mb-8 md:mb-8"
             style={{
               textAlign: 'center',
               fontFeatureSettings: "'liga' off, 'clig' off",
               fontFamily: 'Inter',
-              fontSize: 'clamp(28px, 8vw, 64.844px)',
+              fontSize: 'clamp(32px, 8vw, 64.844px)',
               fontStyle: 'normal',
               fontWeight: 600,
               lineHeight: 'normal',
@@ -79,7 +79,7 @@ const ContactSection = () => {
 
           {/* Description */}
           <p
-            className="text-white mb-8 md:mb-12 max-w-5xl mx-auto text-[18px] md:text-[23px]"
+            className="text-white mb-10 md:mb-12 max-w-5xl mx-auto text-[16px] leading-relaxed md:text-[23px]"
             style={{
               textAlign: 'center',
               fontFamily: 'Inter',

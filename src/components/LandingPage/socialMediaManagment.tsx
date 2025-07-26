@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,16 @@ import dahabiaImg from "@/assets/social_media_camaigns/dahabia.webp";
 import alTakamolImg from "@/assets/social_media_camaigns/al_takamol.webp";
 import ellipseReversed from "@/assets/ellipse_reversed.webp";
 import ContactSection from "./ContactSection";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/firebase";
 
+interface SocialMediaItem {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  behanceLink?: string;
+}
 
 const RightPinkBlur = () => (
   <svg
@@ -24,71 +33,134 @@ const RightPinkBlur = () => (
     style={{ filter: "blur(75px)" }}
   >
     <g filter="url(#filter0_f_141_1296)">
-      <path d="M607.295 1110.42C434.983 1149.04 -48.4783 828.244 240.001 768.794C528.48 709.343 195.353 717.988 248.535 334.238C301.717 -49.5124 736.29 240.545 806.007 551.571C875.724 862.598 779.607 1071.8 607.295 1110.42Z" fill="#F41CCC"/>
+      <path
+        d="M607.295 1110.42C434.983 1149.04 -48.4783 828.244 240.001 768.794C528.48 709.343 195.353 717.988 248.535 334.238C301.717 -49.5124 736.29 240.545 806.007 551.571C875.724 862.598 779.607 1071.8 607.295 1110.42Z"
+        fill="#F41CCC"
+      />
     </g>
     <defs>
-      <filter id="filter0_f_141_1296" x="0.155273" y="0.828125" width="978.747" height="1262.81" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-        <feGaussianBlur stdDeviation="75" result="effect1_foregroundBlur_141_1296"/>
+      <filter
+        id="filter0_f_141_1296"
+        x="0.155273"
+        y="0.828125"
+        width="978.747"
+        height="1262.81"
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="BackgroundImageFix"
+          result="shape"
+        />
+        <feGaussianBlur
+          stdDeviation="75"
+          result="effect1_foregroundBlur_141_1296"
+        />
       </filter>
     </defs>
   </svg>
 );
 
 const SocialMediaManagment: React.FC = () => {
-  const portfolioItems = [
+  const [socialMediaItems, setSocialMediaItems] = useState<SocialMediaItem[]>(
+    []
+  );
+
+  useEffect(() => {
+    const fetchSocialMediaItems = async () => {
+      const snapshot = await getDocs(collection(db, "socialMediaManagement"));
+      setSocialMediaItems(
+        snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: data.name,
+            description: data.description,
+            image: data.image,
+            behanceLink: data.behanceLink,
+          };
+        })
+      );
+    };
+
+    fetchSocialMediaItems();
+  }, []);
+
+  const staticItems: SocialMediaItem[] = [
     {
-      title: "Squeeze Social Media Campaign",
+      id: "squeeze",
+      name: "Squeeze Social Media Campaign",
       description: "Fresh, bold, product-driven visuals",
-      imageSrc: squeezeImg,
+      image: squeezeImg,
+      behanceLink:
+        "https://www.behance.net/gallery/202140597/SQUUSE-SOCIAL-MEDIA-CAMPAIN",
     },
     {
-      title: "Cariby Social Media Campaign",
+      id: "cariby2",
+      name: "Cariby Social Media Campaign",
       description: "Designed to melt attention",
-      imageSrc: caribyDairy2Img,
+      image: caribyDairy2Img,
+      behanceLink:
+        "https://www.behance.net/gallery/177043275/cariby-dairy-social-media-campaign",
     },
     {
-      title: "Qemam Social Media Campaign",
+      id: "qemam",
+      name: "Qemam Social Media Campaign",
       description: "Architecture meets confident design",
-      imageSrc: qemamImg,
+      image: qemamImg,
+      behanceLink:
+        "https://www.behance.net/gallery/165396653/QIMAM-REALESTATE-LOGO",
     },
     {
-      title: "Cariby Social Media Campaign",
+      id: "cariby",
+      name: "Cariby Social Media Campaign",
       description: "Designed to melt attention",
-      imageSrc: caribyDairyImg,
+      image: caribyDairyImg,
+      behanceLink:
+        "https://www.behance.net/gallery/202139479/RATB-ALA-ALBK-SOCIAL-MEDIA-CAMPAIGN",
     },
     {
-      title: "Dahabia Social Media Campaign",
+      id: "dahabia",
+      name: "Dahabia Social Media Campaign",
       description: "Designed to build appetite",
-      imageSrc: dahabiaImg,
+      image: dahabiaImg,
+      behanceLink:
+        "https://www.behance.net/gallery/202141925/DAHABIA-NEW-CAMPIAGN",
     },
     {
-      title: "Takamol Social Media Campaign",
+      id: "altakamol",
+      name: "Takamol Social Media Campaign",
       description: "Architecture meets confident design",
-      imageSrc: alTakamolImg,
+      image: alTakamolImg,
+      behanceLink:
+        "https://www.behance.net/gallery/172599549/TAKAMOL-SOCIAL-MEDIA-CAMPAIGN",
     },
   ];
 
+  const allItems = [...staticItems, ...socialMediaItems];
+
   return (
     <div className="min-h-screen bg-black text-white font-inter relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          {/* Top left blur */}
-          <div
-            className="absolute -top-16 -left-44 w-[468px] h-[473px] opacity-60 rotate-[88.762deg] sm:w-[300px] sm:h-[300px] sm:-top-10 sm:-left-20"
-            style={{
-              background: "#1225B9",
-              filter: "blur(75px)",
-            }}
-          />
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Top left blur */}
+        <div
+          className="absolute -top-16 -left-44 w-[468px] h-[473px] opacity-60 rotate-[88.762deg] sm:w-[300px] sm:h-[300px] sm:-top-10 sm:-left-20"
+          style={{
+            background: "#1225B9",
+            filter: "blur(75px)",
+          }}
+        />
 
-          {/* Top right blur */}
-          <RightPinkBlur />
-        </div>
-        
-        {/* Content Container */}
-        <div className="relative z-10">
+        {/* Top right blur */}
+        <RightPinkBlur />
+      </div>
+
+      {/* Content Container */}
+      <div className="relative z-10">
         <Navigation />
 
         {/* Hero Section */}
@@ -96,20 +168,32 @@ const SocialMediaManagment: React.FC = () => {
           <div className="flex flex-col items-start gap-4 max-w-full lg:max-w-[612px] mb-8 lg:mb-0">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[96px] font-dm-sans font-black leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-[95px]">
               <span className="text-white">Social Media </span>
-              <span className="bg-[linear-gradient(267deg,_#00F0FF_4.01%,_#5200FF_57.55%,_#FF2DF7_114.97%)] bg-clip-text text-transparent">Management</span>
+              <span className="bg-[linear-gradient(267deg,_#00F0FF_4.01%,_#5200FF_57.55%,_#FF2DF7_114.97%)] bg-clip-text text-transparent">
+                Management
+              </span>
             </h1>
             <p className="text-white font-inter text-sm sm:text-base md:text-lg lg:text-[17px] font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-[24px] max-w-full lg:max-w-[579px] mt-4">
-              We manage your platforms with purpose and strategy — creating content that connects, engages, and converts. From planning and copywriting to design and analytics, our team handles every detail to keep your brand active, aligned, and always ahead. Whether you're building awareness or driving sales, we turn your social media into a powerful growth engine.
+              We manage your platforms with purpose and strategy — creating
+              content that connects, engages, and converts. From planning and
+              copywriting to design and analytics, our team handles every
+              detail to keep your brand active, aligned, and always ahead.
+              Whether you're building awareness or driving sales, we turn your
+              social media into a powerful growth engine.
             </p>
 
-            <a href="https://wa.me/201022668840" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://wa.me/201022668840"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button className="relative px-8 py-4 bg-white/10 border border-white/20 rounded-xl backdrop-blur-[10px] hover:bg-white/25 hover:border-white/30 active:bg-white/30 transition-all duration-500 ease-out shadow-[0px_0px_8px_4px_rgba(255,255,255,0.15)_inset] hover:shadow-[0px_0px_20px_8px_rgba(255,255,255,0.25)_inset,0px_8px_32px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group overflow-hidden">
-                {/* Subtle shimmer effect on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                 </div>
-                
-                <span className="relative text-white text-base font-medium mr-3 group-hover:text-white/95 transition-colors duration-300">Get In Touch !</span>
+
+                <span className="relative text-white text-base font-medium mr-3 group-hover:text-white/95 transition-colors duration-300">
+                  Get In Touch !
+                </span>
                 <svg
                   className="relative w-5 h-4 text-white group-hover:translate-x-2 group-hover:scale-110 transition-all duration-500 ease-out"
                   fill="currentColor"
@@ -134,48 +218,56 @@ const SocialMediaManagment: React.FC = () => {
         {/* Portfolio Grid */}
         <section className="relative z-40 px-6 sm:px-8 md:px-16 lg:px-32 py-4 sm:py-6 md:py-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16">
-            {portfolioItems.map((item, idx) => {
-              const isSqueeze = item.imageSrc === squeezeImg;
-              const isCariby = item.imageSrc === caribyDairyImg;
-              const isQemam = item.imageSrc === qemamImg;
-              const isCariby2 = item.imageSrc === caribyDairy2Img;
-              const isDahabia = item.imageSrc === dahabiaImg;
-              const isAlTakamol = item.imageSrc === alTakamolImg;
+            {allItems.map((item) => {
               const cardContent = (
                 <div className="group relative flex flex-col p-2 gap-3 rounded-[18px] bg-gray-800 hover:bg-gray-700 transition-colors overflow-hidden">
+                  {/* Shade Overlay */}
+                  <div className="absolute inset-0 bg-black rounded-[18px] opacity-0 group-hover:opacity-50 transition-opacity duration-300 z-10"></div>
+
                   {/* Hover Button */}
                   <button
                     className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-auto"
-                    style={{ pointerEvents: 'auto' }}
-                    aria-label={`View ${item.title}`}
+                    style={{ pointerEvents: "auto" }}
+                    aria-label={`View ${item.name}`}
                     tabIndex={0}
                   >
                     <span
                       className="flex items-center justify-center w-14 h-14 border border-white/30 shadow-lg hover:opacity-90 transition-all"
                       style={{
-                        borderRadius: '2018.518px',
-                        background: 'linear-gradient(267deg, #00F0FF 4.01%, #5200FF 57.55%, #FF2DF7 114.97%)',
-                        boxShadow: '0 0 0 4px rgba(255,255,255,0.7), 0 0 16px 4px rgba(255,255,255,0.5)'
+                        borderRadius: "2018.518px",
+                        background:
+                          "linear-gradient(267deg, #00F0FF 4.01%, #5200FF 57.55%, #FF2DF7 114.97%)",
+                        boxShadow:
+                          "0 0 0 4px rgba(255,255,255,0.7), 0 0 16px 4px rgba(255,255,255,0.5)",
                       }}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 52 52" fill="none">
-                        <path d="M8.44509 49.7399L42.9883 15.1967L42.9883 45.3795C42.9883 47.7917 44.9675 49.7709 47.3797 49.7709C49.7918 49.7709 51.7401 47.8226 51.7401 45.4104L51.7401 4.65128C51.7401 2.23913 49.7918 0.290861 47.3797 0.290857L6.62051 0.229006C4.20836 0.229008 2.26009 2.17728 2.26009 4.58943C2.26009 7.00158 4.20836 8.94986 6.62051 8.94986L36.8033 9.01171L2.26009 43.5549C0.559212 45.2558 0.559213 48.0391 2.26009 49.7399C3.96096 51.4408 6.74421 51.4408 8.44509 49.7399Z" fill="white"/>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 52 52"
+                        fill="none"
+                      >
+                        <path
+                          d="M8.44509 49.7399L42.9883 15.1967L42.9883 45.3795C42.9883 47.7917 44.9675 49.7709 47.3797 49.7709C49.7918 49.7709 51.7401 47.8226 51.7401 45.4104L51.7401 4.65128C51.7401 2.23913 49.7918 0.290861 47.3797 0.290857L6.62051 0.229006C4.20836 0.229008 2.26009 2.17728 2.26009 4.58943C2.26009 7.00158 4.20836 8.94986 6.62051 8.94986L36.8033 9.01171L2.26009 43.5549C0.559212 45.2558 0.559213 48.0391 2.26009 49.7399C3.96096 51.4408 6.74421 51.4408 8.44509 49.7399Z"
+                          fill="white"
+                        />
                       </svg>
                     </span>
                   </button>
                   {/* Card Content */}
                   <div className="flex h-[250px] sm:h-[280px] md:h-[319px] justify-center items-center rounded-[11px] overflow-hidden">
                     <img
-                      src={item.imageSrc}
-                      alt={item.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
                       decoding="async"
                     />
                   </div>
                   <div className="flex flex-col gap-2 px-2 pb-2">
                     <h3 className="text-white font-inter text-base sm:text-lg font-bold leading-tight">
-                      {item.title}
+                      {item.name}
                     </h3>
                     <p className="text-gray-100 font-inter text-xs font-normal leading-relaxed opacity-80">
                       {item.description}
@@ -183,11 +275,12 @@ const SocialMediaManagment: React.FC = () => {
                   </div>
                 </div>
               );
-              if (isSqueeze) {
+
+              if (item.behanceLink) {
                 return (
                   <a
-                    key={idx}
-                    href="https://www.behance.net/gallery/202140597/SQUUSE-SOCIAL-MEDIA-CAMPAIN"
+                    key={item.id}
+                    href={item.behanceLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
@@ -196,89 +289,31 @@ const SocialMediaManagment: React.FC = () => {
                     {cardContent}
                   </a>
                 );
-              } else if (isCariby) {
-                return (
-                  <a
-                    key={idx}
-                    href="https://www.behance.net/gallery/202139479/RATB-ALA-ALBK-SOCIAL-MEDIA-CAMPAIGN"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                    tabIndex={0}
-                  >
-                    {cardContent}
-                  </a>
-                );
-              } else if (isQemam) {
-                return (
-                  <a
-                    key={idx}
-                    href="https://www.behance.net/gallery/165396653/QIMAM-REALESTATE-LOGO"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                    tabIndex={0}
-                  >
-                    {cardContent}
-                  </a>
-                );
-              } else if (isCariby2) {
-                return (
-                  <a
-                    key={idx}
-                    href="https://www.behance.net/gallery/177043275/cariby-dairy-social-media-campaign"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                    tabIndex={0}
-                  >
-                    {cardContent}
-                  </a>
-                );
-              } else if (isDahabia) {
-                return (
-                  <a
-                    key={idx}
-                    href="https://www.behance.net/gallery/202141925/DAHABIA-NEW-CAMPIAGN"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                    tabIndex={0}
-                  >
-                    {cardContent}
-                  </a>
-                );
-              } else if (isAlTakamol) {
-                return (
-                  <a
-                    key={idx}
-                    href="https://www.behance.net/gallery/172599549/TAKAMOL-SOCIAL-MEDIA-CAMPAIGN"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                    tabIndex={0}
-                  >
-                    {cardContent}
-                  </a>
-                );
-              } else {
-                return <React.Fragment key={idx}>{cardContent}</React.Fragment>;
               }
+
+              return (
+                <React.Fragment key={item.id}>{cardContent}</React.Fragment>
+              );
             })}
           </div>
 
           <div className="text-center relative z-50">
             <p className="text-white text-lg md:text-2xl font-normal font-inter leading-relaxed max-w-3xl mx-auto mb-8">
-              At Looklike, we craft every social media campaign with attention to the smallest detail — from content strategy to visual design and engagement metrics. Explore more of our social media management projects.
+              At Looklike, we craft every social media campaign with attention
+              to the smallest detail — from content strategy to visual design
+              and engagement metrics. Explore more of our social media
+              management projects.
             </p>
 
             <Button className="relative px-8 py-4 bg-white/10 border border-white/20 rounded-xl backdrop-blur-[10px] hover:bg-white/25 hover:border-white/30 active:bg-white/30 transition-all duration-500 ease-out shadow-[0px_0px_8px_4px_rgba(255,255,255,0.15)_inset] hover:shadow-[0px_0px_20px_8px_rgba(255,255,255,0.25)_inset,0px_8px_32px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 group overflow-hidden">
-              <span className="relative text-white text-base font-medium mr-3 group-hover:text-white/95 transition-colors duration-300">Explore More</span>
+              <span className="relative text-white text-base font-medium mr-3 group-hover:text-white/95 transition-colors duration-300">
+                Explore More
+              </span>
             </Button>
           </div>
         </section>
 
-        {/* eclipse reversed image */}
+        {/* ellipse reversed image */}
         <div className="w-full flex justify-center relative z-30 -translate-y-16 md:-translate-y-56 pointer-events-none">
           <img
             src={ellipseReversed}
