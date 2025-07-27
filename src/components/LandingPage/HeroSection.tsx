@@ -28,7 +28,7 @@ const HeroSection = () => {
       <MainContent />
 
       {/* SVG decorative element at bottom */}
-      <div className="absolute left-0 bottom-0 w-full z-30 pointer-events-none" style={{ marginTop: 'clamp(6rem, 15vw, 12rem)' }}>
+      <div className="absolute left-0 w-full z-30 pointer-events-none" style={{ bottom: 'clamp(-2rem, -5vw, -4rem)' }}>
         <svg 
           width="100%" 
           height="133" 
