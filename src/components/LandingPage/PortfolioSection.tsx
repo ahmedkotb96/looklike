@@ -194,15 +194,15 @@ const PortfolioSection = () => {
                 </div>
                 
                 {/* Content Section */}
-                <div className="w-full md:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col justify-center">
-                  <div className="space-y-3 md:space-y-6">
+                <div className="w-full md:w-1/2 p-6 md:p-12 lg:p-16 flex flex-col justify-start">
+                  <div className="space-y-3 md:space-y-6 mt-4 md:mt-8">
                     <div>
                       <h3 className="text-white text-2xl md:text-5xl font-bold">
                         {projects[currentProject].title}
                       </h3>
                     </div>
                     <div className="relative">
-                      <div className="max-h-[220px] md:max-h-[180px] overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                      <div className={`${expandedDescriptions[currentProject] ? '' : 'max-h-[220px] md:max-h-[180px] overflow-hidden'}`}>
                         <p
                           className={`text-white text-base md:text-base lg:text-lg md:leading-7 font-medium ${
                             !expandedDescriptions[currentProject] && needsSeeMore(projects[currentProject].description) 

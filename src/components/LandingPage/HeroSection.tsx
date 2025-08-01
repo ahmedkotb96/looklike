@@ -9,7 +9,7 @@ const HeroSection = () => {
       className="relative flex flex-col items-center overflow-hidden
         /* 1. Base (Mobile): Compact padding, no min-height. */
         /* INCREASED bottom padding for mobile version. */
-        pt-28 pb-16
+        pt-28 pb-40
 
         /* 2. Portrait Tablet (e.g., 1024x1366): Reduced height with balanced padding. */
         lg:portrait:min-h-[80vh] lg:portrait:py-32
@@ -66,7 +66,7 @@ const HeroSection = () => {
       </div>
 
       {/* Services introduction text */}
-      <div className="absolute bottom-8 left-0 right-0 md:relative md:bottom-auto md:left-auto md:right-auto z-40 text-center px-4 max-w-2xl mx-auto md:mb-16" style={{ marginTop: '12rem' }}>
+      <div className="absolute bottom-4 left-0 right-0 md:relative md:bottom-auto md:left-auto md:right-auto z-40 text-center px-4 max-w-2xl mx-auto md:mb-16" style={{ marginTop: '12rem' }}>
         <p className="text-white text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2">Everything you need</p>
         <p className="text-white text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto mt-2">
           From branding and graphic design to social media, digital ads, and outdoor campaigns — we plan, design, and execute strategies that get you noticed. Set goals, assign tasks, and watch your brand grow — effortlessly.

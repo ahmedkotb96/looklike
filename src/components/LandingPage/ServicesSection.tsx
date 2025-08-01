@@ -247,7 +247,7 @@ const ServicesSection = () => {
                               {service.title}
                             </h3>
                             <p
-                              className={`text-white text-sm leading-relaxed opacity-90 text-justify ${!isExpanded && isLongDescription ? 'line-clamp-4' : ''}`}
+                              className={`text-white text-sm leading-relaxed opacity-90 ${!isExpanded && isLongDescription ? 'line-clamp-4' : ''}`}
                               style={{
                                 color: '#FFF',
                                 fontFamily: 'Inter',
@@ -390,7 +390,6 @@ const ServicesSection = () => {
                               fontSize: isHovered ? '13px' :
                                       transitioning === index ? '12px' :
                                       hoveredCard !== null && !isHovered ? '12px' : '13px',
-                              textAlign: 'justify',
                             }}
                           >
                             {service.description}

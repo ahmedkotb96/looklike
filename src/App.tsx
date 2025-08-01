@@ -52,19 +52,12 @@ const AppRoutes = () => {
 // Enhanced WhatsApp Sticky Icon Component with interactive animations
 const WhatsAppStickyIcon = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [showGlow, setShowGlow] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     // Show icon after a brief delay for smooth entrance
     const timer = setTimeout(() => setIsVisible(true), 1000);
     
-    // Add periodic glow effect to draw attention
-    const glowTimer = setInterval(() => {
-      setShowGlow(true);
-      setTimeout(() => setShowGlow(false), 3000);
-    }, 15000);
-
     // Add CSS keyframes
     const style = document.createElement('style');
     style.textContent = `
@@ -72,18 +65,12 @@ const WhatsAppStickyIcon = () => {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-8px); }
       }
-      @keyframes whatsapp-glow {
-        0%, 100% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3); }
-        50% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6), 0 0 0 4px rgba(37, 211, 102, 0.2); }
-      }
       .whatsapp-float { animation: whatsapp-float 3s ease-in-out infinite; }
-      .whatsapp-glow { animation: whatsapp-glow 2s ease-in-out infinite; }
     `;
     document.head.appendChild(style);
 
     return () => {
       clearTimeout(timer);
-      clearInterval(glowTimer);
       if (document.head.contains(style)) {
         document.head.removeChild(style);
       }
@@ -181,7 +168,7 @@ const WhatsAppStickyIcon = () => {
 
   return (
     <div 
-      className={`whatsapp-float ${showGlow ? 'whatsapp-glow' : ''}`}
+      className="whatsapp-float"
       style={containerStyle}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
