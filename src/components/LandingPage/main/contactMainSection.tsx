@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import bottomEclipse from "@/assets/ellipse_bottom.webp";
 import looklikeLogo from "@/assets/looklike_logo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import emailjs from '@emailjs/browser';
 
 const Footer = () => {
@@ -117,20 +117,26 @@ const ContactSection = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
 
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init("nofz9hgHPlkSsJT2O");
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-  const USER_ID = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const SERVICE_ID = "service_fxwfuki";
+  const TEMPLATE_ID = "template_xpd7n0n";
+  const USER_ID = "nofz9hgHPlkSsJT2O";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setSuccess('');
+    
     try {
-      await emailjs.send(
+      const result = await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
         {
@@ -140,10 +146,14 @@ const ContactSection = () => {
         },
         USER_ID
       );
-      setSuccess("Thank you for reaching out! We'll be in touch soon.");
-      setForm({ name: '', email: '', message: '' });
-    } catch {
-      // Optionally handle error
+      
+      if (result.status === 200) {
+        setSuccess("Thank you for reaching out! We'll be in touch soon.");
+        setForm({ name: '', email: '', message: '' });
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setSuccess("Sorry, there was an error sending your message. Please try again.");
     } finally {
       setLoading(false);
     }
