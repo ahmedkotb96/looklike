@@ -307,7 +307,7 @@ const Navigation = () => {
                         className="w-full bg-gradient-to-r from-[#1225B9] to-blue-600 hover:from-[#1225B9]/90 hover:to-blue-600/90 text-white px-4 py-3 rounded-2xl text-[1rem] font-semibold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 border border-blue-400/20 min-h-0 min-w-0"
                         onClick={() => handleNavigate("/contact")}
                       >
-                        <span className="relative z-10 leading-tight text-[0.95rem] font-semibold tracking-tight">Get Started</span>
+                        <span className="relative z-10 leading-tight text-[0.95rem] font-semibold tracking-tight">Contact Us</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                       </Button>
                     </div>
