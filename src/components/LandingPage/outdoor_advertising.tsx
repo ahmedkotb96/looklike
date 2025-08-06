@@ -117,11 +117,11 @@ export default function OutdoorAdvertising() {
               </Button>
             </a>
           </div>
-          <div className="flex-shrink-0 w-full lg:w-auto flex justify-center">
+          <div className="flex-shrink-0 w-full lg:w-auto flex justify-center lg:justify-end">
             <img
               src={outdoorAdvertisingDecoration}
               alt="Outdoor Advertising Decoration"
-              className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] xl:w-[672px] xl:h-[672px] object-contain"
+              className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] xl:w-[672px] xl:h-[672px] object-contain ml-auto -mr-32 sm:-mr-40 md:-mr-48 lg:mr-0"
               loading="lazy"
               decoding="async"
             />

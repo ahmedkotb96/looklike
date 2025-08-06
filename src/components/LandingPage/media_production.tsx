@@ -135,7 +135,7 @@ export default function MediaProduction() {
               <img
                 src={mediaProductionDecoration}
                 alt="3D Media Production Visualization"
-                className="w-full max-w-[679px] h-auto rounded-lg"
+                className="w-full max-w-[679px] h-auto rounded-lg ml-auto -mr-48 sm:-mr-56 md:-mr-64 lg:mr-0"
                 loading="lazy"
                 decoding="async"
               />
